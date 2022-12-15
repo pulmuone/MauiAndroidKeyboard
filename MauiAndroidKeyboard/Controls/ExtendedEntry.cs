@@ -61,13 +61,16 @@ namespace MauiAndroidKeyboard.Controls
 
         public void ShowKeyboard()
         {
+#if ANDROID
             VirtualKeyboardHandler?.ShowKeyboard();
-
+#endif
         }
 
         public void HideKeyboard()
         {
+#if ANDROID
             VirtualKeyboardHandler?.HideKeyboard();
+#endif
         }
     }
 }
