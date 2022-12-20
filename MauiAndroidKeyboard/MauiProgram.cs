@@ -19,12 +19,13 @@ public static class MauiProgram
 			.ConfigureMauiHandlers((handlers) => {
 #if ANDROID
 			handlers.AddCompatibilityRenderer(typeof(ExtendedEntry),typeof(MauiAndroidKeyboard.Platforms.Android.Renderers.ExtendedEntryRenderer));
+			handlers.AddHandler(typeof(CustomEntry), typeof(MauiAndroidKeyboard.Platforms.Android.CustomEntryHandler));
 #endif
 
 #if IOS
 			//handlers.AddHandler(typeof(PressableView), typeof(XamarinCustomRenderer.iOS.Renderers.PressableViewRenderer));
 #endif
-			});
+            });
 
 		return builder.Build();
 	}

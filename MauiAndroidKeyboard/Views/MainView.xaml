@@ -11,7 +11,7 @@
 		<vm:MainViewModel x:Name="vm"/>
 	</ContentPage.BindingContext>
 
-	<Grid RowDefinitions="100, 50, 50"
+	<Grid RowDefinitions="100, 50, 50, 50, 50"
 		  ColumnDefinitions="100, *">
 
 		<Grid Grid.Row="0" Grid.ColumnSpan="2">
@@ -47,6 +47,13 @@
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
             </renderers:ExtendedEntry>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <renderers:CustomEntry Text="테스트" >
+                
+            </renderers:CustomEntry>
+
         </Grid>
     </Grid>
 </ContentPage>
