@@ -4,56 +4,22 @@
 			 x:Class="MauiAndroidKeyboard.Views.MainView"
 			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
+             xmlns:vw="clr-namespace:MauiAndroidKeyboard.Views"
 			 Title="MainView"
 			 x:Name="pg">
 
-	<ContentPage.BindingContext>
-		<vm:MainViewModel x:Name="vm"/>
-	</ContentPage.BindingContext>
+    <ContentPage.BindingContext>
+        <vm:MainViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
 
-	<Grid RowDefinitions="100, 50, 50, 50, 50"
-		  ColumnDefinitions="100, *">
+    <StackLayout Orientation="Vertical">
 
-		<Grid Grid.Row="0" Grid.ColumnSpan="2">
-		   <Label 
-			Text="Welcome to .NET MAUI!"
-			VerticalOptions="Center" 
-			HorizontalOptions="Center" />
-		</Grid>
+        <Button Text="Renderer Entry"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type vw:RendererEntryView}"/>
 
-		<Grid Grid.Row="1" Grid.Column="0">
-			<Label Text="User ID" VerticalTextAlignment="End" />
-		</Grid>
-
-		<Grid Grid.Row="1" Grid.Column="1">
-			<renderers:ExtendedEntry x:Name="UserIDEntry"
-                                     Text="{Binding UserID}"
-									 IsTextPredictionEnabled="false" 
-									 ClearButtonVisibility="WhileEditing"
-									 ReturnCommand="{Binding UserIDCompletedCommand}"
-									 ReturnCommandParameter="{x:Reference Name=pg}">
-			</renderers:ExtendedEntry>
-		</Grid>
-
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Label Text="Password" VerticalTextAlignment="End"/>
-        </Grid>
-
-        <Grid Grid.Row="2" Grid.Column="1">
-            <renderers:ExtendedEntry x:Name="PasswordEntry"
-                                     Text="{Binding Password}"
-									 IsTextPredictionEnabled="false" 
-									 ClearButtonVisibility="WhileEditing"
-									 ReturnCommand="{Binding PasswordCompletedCommand}"
-									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </renderers:ExtendedEntry>
-        </Grid>
-
-        <Grid Grid.Row="3" Grid.Column="1">
-            <renderers:CustomEntry Text="테스트" >
-                
-            </renderers:CustomEntry>
-
-        </Grid>
-    </Grid>
+        <Button Text="Handler Entry"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type vw:HandlerEntryView}"/>
+    </StackLayout>
 </ContentPage>

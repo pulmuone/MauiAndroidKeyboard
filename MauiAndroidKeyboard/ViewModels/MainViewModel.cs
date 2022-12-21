@@ -10,67 +10,26 @@ namespace MauiAndroidKeyboard.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ICommand UserIDCompletedCommand { get; private set; }
-        public ICommand PasswordCompletedCommand { get; private set; }
-
-        public string _userID;
-        public string _password;
+        INavigation Navigation => Application.Current.MainPage.Navigation;
+        public ICommand NavigateCommand { get; private set; }
 
         public MainViewModel() 
         {
-            UserIDCompletedCommand = new Command<object>(async (obj) => await UserIDCompleted(obj), (obj) => IsControlEnable);
-            PasswordCompletedCommand = new Command<object>(async (obj) => await PasswordCompleted(obj), (obj) => IsControlEnable);
+            NavigateCommand = new Command<Type>(async (obj) => await ViewNavigate(obj), (obj) => IsControlEnable);
         }
 
-        private async Task UserIDCompleted(object obj)
+        private async Task ViewNavigate(Type type)
         {
             IsControlEnable = false;
             IsBusy = true;
-            (UserIDCompletedCommand as Command).ChangeCanExecute();
+            (NavigateCommand as Command).ChangeCanExecute();
 
-            ExtendedEntry entry = ((ExtendedEntry)((ContentPage)obj).FindByName("UserIDEntry"));
-            entry.IsEnabled = false;
-            entry.IsEnabled = true;
-            entry.HideKeyboard();
+            Page page = (Page)Activator.CreateInstance(type);
+            await Navigation.PushAsync(page);
 
-            //ToDo
-
-
-            IsControlEnable = true;
             IsBusy = false;
-            (UserIDCompletedCommand as Command).ChangeCanExecute();
-        }
-
-        private async Task PasswordCompleted(object obj)
-        {
-            IsControlEnable = false;
-            IsBusy = true;
-            (PasswordCompletedCommand as Command).ChangeCanExecute();
-
-            ExtendedEntry entry = ((ExtendedEntry)((ContentPage)obj).FindByName("PasswordEntry"));
-            entry.IsEnabled = false;
-            entry.IsEnabled = true;
-            entry.HideKeyboard();
-
-            //ToDo
-
-
             IsControlEnable = true;
-            IsBusy = false;
-            (PasswordCompletedCommand as Command).ChangeCanExecute();
+            (NavigateCommand as Command).ChangeCanExecute();
         }
-
-        public string UserID
-        {
-            get => this._userID;
-            set => SetProperty(ref this._userID, value);
-        }
-
-        public string Password
-        {
-            get => this._password;
-            set => SetProperty(ref this._password, value);
-        }
-
     }
 }

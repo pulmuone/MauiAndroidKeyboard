@@ -2,10 +2,10 @@ using MauiAndroidKeyboard.Controls;
 
 namespace MauiAndroidKeyboard.Views;
 
-public partial class MainView : ContentPage
+public partial class RendererEntryView : ContentPage
 {
-	private HandlerEntry _currententry;
-	public MainView()
+	private ExtendedEntry _currententry;
+	public RendererEntryView()
 	{
 		InitializeComponent();
 	}
@@ -25,19 +25,13 @@ public partial class MainView : ContentPage
 		}
 	}
 
-
-	private void HandlerEntry_Focused(object sender, FocusEventArgs e)
+	private void UserIDEntry_Focused(object sender, FocusEventArgs e)
 	{
-		_currententry = sender as HandlerEntry;
+		_currententry = sender as ExtendedEntry;
 	}
 
-	private void HandlerEntry_Completed(object sender, EventArgs e)
+	private void PasswordEntry_Focused(object sender, FocusEventArgs e)
 	{
-		Console.WriteLine("aa");
-	}
-
-	private void HandlerEntry_HandlerChanged(object sender, EventArgs e)
-	{
-		Console.WriteLine("b");
+		_currententry = sender as ExtendedEntry;
 	}
 }

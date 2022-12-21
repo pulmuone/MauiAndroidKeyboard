@@ -9,7 +9,7 @@ public partial class App : Application
 		InitializeComponent();
 
 		//MainPage = new AppShell();
-		MainPage = new MainView();
+		MainPage = new NavigationPage(new MainView());
 
 	}
 }
