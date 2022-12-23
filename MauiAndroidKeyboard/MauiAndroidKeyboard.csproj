@@ -46,7 +46,6 @@
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	  <RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64</RuntimeIdentifiers>
 	  <RunAOTCompilation>False</RunAOTCompilation>
-	  <BundleAssemblies>true</BundleAssemblies>
 	</PropertyGroup>
 
 	<PropertyGroup>
