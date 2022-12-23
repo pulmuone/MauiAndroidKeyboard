@@ -11,6 +11,12 @@ using view = Android.Views;
 
 namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
+    /// <summary>
+    /// 이 방식은 사용자 Entry가 Maui의 Entry를 상속 받아서 구현해도 
+    /// Maui의 Entry기능을 사용 할 수 없습니다. 
+    /// 예를 들어 Maui Entry의 Keyboard="Numeric"를 지정해도 전혀 적용되지 않습니다. 
+    /// ViewHandler는 view를 기반으로 하기 때문에 각 OS에서 재정의 해줘야 합니다.
+    /// </summary>
     public partial class CustomEntryHandler : ViewHandler<HandlerEntry, EditText>
     {
         public static PropertyMapper<HandlerEntry, CustomEntryHandler> PropertyMapper = new PropertyMapper<HandlerEntry, CustomEntryHandler>(ViewHandler.ViewMapper)

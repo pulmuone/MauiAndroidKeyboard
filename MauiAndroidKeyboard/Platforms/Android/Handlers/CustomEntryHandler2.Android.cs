@@ -1,4 +1,5 @@
-﻿using Android.Views.InputMethods;
+﻿using Android.Util;
+using Android.Views.InputMethods;
 using AndroidX.AppCompat.Widget;
 using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui.Handlers;
@@ -37,6 +38,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.SetPadding(0, 0, 0, 0);
             platformView.SetTextIsSelectable(true);
             platformView.SetSelectAllOnFocus(true);
+            platformView.SetTextSize(ComplexUnitType.Sp, 14);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
         }
 

@@ -20,8 +20,9 @@
 	</ContentPage.ToolbarItems>
 
 
-	<Grid RowDefinitions="100, 50, 50, 50, 50"
-		  ColumnDefinitions="120, *">
+	<Grid RowDefinitions="100, 40, 40, 40, 40"
+		  ColumnDefinitions="120, *"
+		  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
 
 		<Grid Grid.Row="0" Grid.ColumnSpan="2">
 			<Label 
@@ -31,7 +32,7 @@
 		</Grid>
 
 		<Grid Grid.Row="1" Grid.Column="0">
-			<Label Text="User ID" VerticalTextAlignment="End" />
+			<Label Text="User ID" VerticalTextAlignment="Center"  HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
 		</Grid>
 
 		<Grid Grid.Row="1" Grid.Column="1">
@@ -47,11 +48,11 @@
 		</Grid>
 
 		<Grid Grid.Row="2" Grid.Column="0">
-			<Label Text="Password" VerticalTextAlignment="End"/>
+			<Label Text="Password" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Gray"/>
 		</Grid>
 
-		<Grid Grid.Row="2" Grid.Column="1">
-			<renderers:HandlerEntry2 x:Name="PasswordEntry"
+		<Grid Grid.Row="2" Grid.Column="1" >
+			<renderers:HandlerEntry2 x:Name="PasswordEntry" Margin="0,0,0,0"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
@@ -63,13 +64,18 @@
 			</renderers:HandlerEntry2>
 		</Grid>
 
-		<Grid Grid.Row="3" Grid.Column="1">
+		<Grid Grid.Row="3" Grid.Column="0">
+			<Label Text="Company" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
+		</Grid>
+
+		<Grid Grid.Row="3" Grid.Column="1" >
 			<Entry x:Name="CompanyEntry"
+				   VerticalOptions="FillAndExpand"
+					Placeholder="Enter text"
 				   IsTextPredictionEnabled="false" 
 				   Keyboard="Numeric">
 			</Entry>
 		</Grid>
-
 	</Grid>
 
 </ContentPage>
