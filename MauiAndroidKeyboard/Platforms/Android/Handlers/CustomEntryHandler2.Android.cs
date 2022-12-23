@@ -3,6 +3,7 @@ using Android.Views.InputMethods;
 using AndroidX.AppCompat.Widget;
 using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui.Handlers;
+using System.Runtime.CompilerServices;
 using content = Android.Content;
 using view = Android.Views;
 
