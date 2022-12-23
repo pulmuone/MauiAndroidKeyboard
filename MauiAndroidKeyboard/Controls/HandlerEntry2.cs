@@ -76,20 +76,24 @@ namespace MauiAndroidKeyboard.Controls
         {
             SoftKeyboardViewStatus = SoftKeyboardViewStatus.SHOW;
 
-            VirtualKeyboardToggle = VirtualKeyboardToggle ? false: true;
-           
-            //ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            //Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
+            //VirtualKeyboardToggle = VirtualKeyboardToggle ? false: true;
+
+            VirtualKeyboardHandler?.ShowKeyboard();
+
+            ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
         }
 
         public void HideKeyboard()
         {
             SoftKeyboardViewStatus = SoftKeyboardViewStatus.HIDE;
 
-            VirtualKeyboardToggle = VirtualKeyboardToggle ? false : true;
+            //VirtualKeyboardToggle = VirtualKeyboardToggle ? false : true;
 
-            //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            //Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));            
+            VirtualKeyboardHandler?.HideKeyboard();
+
+            HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
         }
     }
 }
