@@ -80,8 +80,8 @@ namespace MauiAndroidKeyboard.Controls
 
             VirtualKeyboardHandler?.ShowKeyboard();
 
-            ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
+            //ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
         }
 
         public void HideKeyboard()
@@ -92,8 +92,8 @@ namespace MauiAndroidKeyboard.Controls
 
             VirtualKeyboardHandler?.HideKeyboard();
 
-            HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
+            //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
         }
     }
 }
