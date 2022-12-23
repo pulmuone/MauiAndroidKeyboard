@@ -1,23 +1,26 @@
 ﻿using MauiAndroidKeyboard.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MauiAndroidKeyboard.Controls
 {
-    public enum SoftKeyboardViewStatus
+    public class HandlerEntry2 : Entry
     {
-        SHOW,
-        HIDE,
-    }
+        public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
+            = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(HandlerEntry2), true);
 
-    public class HandlerEntry : Entry
-    {
-        public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(ExtendedEntry), true);
-        
+        public static readonly BindableProperty VirtualKeyboardToggleProperty
+            = BindableProperty.Create("VirtualKeyboardToggle", typeof(bool), typeof(HandlerEntry2), true);
+
+        public bool VirtualKeyboardToggle
+        {
+            get => (bool)this.GetValue(VirtualKeyboardToggleProperty);
+            set => this.SetValue(VirtualKeyboardToggleProperty, value);
+        }
+
         public bool ShowVirtualKeyboardOnFocus
         {
             get => (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty);
@@ -26,12 +29,15 @@ namespace MauiAndroidKeyboard.Controls
 
         public SoftKeyboardViewStatus SoftKeyboardViewStatus;
 
+        public IVirtualKeyboard VirtualKeyboardHandler { get; set; }
+
         #region Events
         public event EventHandler ShowKeyboardRequested;
         public event EventHandler HideKeyboardRequested;
         #endregion
 
-        public HandlerEntry()
+
+        public HandlerEntry2()
         {
             this.Focused += OnFocused;
             this.Unfocused -= OnFocused;
@@ -52,7 +58,6 @@ namespace MauiAndroidKeyboard.Controls
             }
         }
 
-
         public new bool Focus()
         {
             if (ShowVirtualKeyboardOnFocus)
@@ -71,16 +76,20 @@ namespace MauiAndroidKeyboard.Controls
         {
             SoftKeyboardViewStatus = SoftKeyboardViewStatus.SHOW;
 
-            ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            Handler?.Invoke(nameof(HandlerEntry.ShowKeyboardRequested));
+            VirtualKeyboardToggle = VirtualKeyboardToggle ? false: true;
+           
+            //ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
         }
 
         public void HideKeyboard()
         {
             SoftKeyboardViewStatus = SoftKeyboardViewStatus.HIDE;
 
-            HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            Handler?.Invoke(nameof(HandlerEntry.HideKeyboardRequested));
+            VirtualKeyboardToggle = VirtualKeyboardToggle ? false : true;
+
+            //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));            
         }
     }
 }

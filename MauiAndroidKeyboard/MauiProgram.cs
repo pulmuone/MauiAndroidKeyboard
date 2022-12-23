@@ -11,7 +11,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCompatibility() //AddCompatibilityRenderer을 사용 할 경우만
-            .ConfigureFonts(fonts =>
+			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -20,6 +20,8 @@ public static class MauiProgram
 #if ANDROID
 			handlers.AddCompatibilityRenderer(typeof(ExtendedEntry),typeof(MauiAndroidKeyboard.Platforms.Android.Renderers.ExtendedEntryRenderer));
 			handlers.AddHandler(typeof(HandlerEntry), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler));
+
+			handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler2));
 #endif
 
 #if IOS

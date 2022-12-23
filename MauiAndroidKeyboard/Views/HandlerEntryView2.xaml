@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView"
+			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView2"
 			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
-			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
-			 Title="HandlerEntryView"
+			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"             
+			 Title="HandlerEntryView2"
 			 x:Name="pg">
 
 	<ContentPage.BindingContext>
-		<vm:HandlerEntryViewModel x:Name="vm"/>
+		<vm:HandlerEntryViewModel2 x:Name="vm"/>
 	</ContentPage.BindingContext>
 
 
@@ -35,7 +35,7 @@
 		</Grid>
 
 		<Grid Grid.Row="1" Grid.Column="1">
-			<renderers:HandlerEntry x:Name="UserIDEntry"
+			<renderers:HandlerEntry2 x:Name="UserIDEntry"
 									 Text="{Binding UserID}"
 									 IsTextPredictionEnabled="false" 
 									 ClearButtonVisibility="WhileEditing"
@@ -43,7 +43,7 @@
 									 Focused="UserIDEntry_Focused"
 									 ReturnCommand="{Binding UserIDCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-			</renderers:HandlerEntry>
+			</renderers:HandlerEntry2>
 		</Grid>
 
 		<Grid Grid.Row="2" Grid.Column="0">
@@ -51,7 +51,7 @@
 		</Grid>
 
 		<Grid Grid.Row="2" Grid.Column="1">
-			<renderers:HandlerEntry x:Name="PasswordEntry"
+			<renderers:HandlerEntry2 x:Name="PasswordEntry"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
@@ -60,8 +60,16 @@
 									 ClearButtonVisibility="WhileEditing"
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-			</renderers:HandlerEntry>
+			</renderers:HandlerEntry2>
 		</Grid>
-	 
+
+		<Grid Grid.Row="3" Grid.Column="1">
+			<Entry x:Name="CompanyEntry"
+				   IsTextPredictionEnabled="false" 
+				   Keyboard="Numeric">
+			</Entry>
+		</Grid>
+
 	</Grid>
+
 </ContentPage>

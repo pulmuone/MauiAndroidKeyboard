@@ -11,7 +11,6 @@ public partial class HandlerEntryView : ContentPage
 		InitializeComponent();
 	}
 
-
     private void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
     {
         if (_currententry != null)

@@ -4,22 +4,27 @@
 			 x:Class="MauiAndroidKeyboard.Views.MainView"
 			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
-             xmlns:vw="clr-namespace:MauiAndroidKeyboard.Views"
+			 xmlns:vw="clr-namespace:MauiAndroidKeyboard.Views"
 			 Title="MainView"
 			 x:Name="pg">
 
-    <ContentPage.BindingContext>
-        <vm:MainViewModel x:Name="vm"/>
-    </ContentPage.BindingContext>
+	<ContentPage.BindingContext>
+		<vm:MainViewModel x:Name="vm"/>
+	</ContentPage.BindingContext>
 
-    <StackLayout Orientation="Vertical">
+	<StackLayout Orientation="Vertical">
 
-        <Button Text="Renderer Entry"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type vw:RendererEntryView}"/>
+		<Button Text="Renderer Entry"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:RendererEntryView}"/>
 
-        <Button Text="Handler Entry"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type vw:HandlerEntryView}"/>
-    </StackLayout>
+		<Button Text="Handler Entry (Don't work)"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:HandlerEntryView}"/>
+
+
+		<Button Text="Handler Entry2"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:HandlerEntryView2}"/>
+	</StackLayout>
 </ContentPage>

@@ -26,6 +26,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         public CustomEntryHandler() : base(PropertyMapper, CommandMapper)
         {
+
         }
 
         protected override EditText CreatePlatformView()
