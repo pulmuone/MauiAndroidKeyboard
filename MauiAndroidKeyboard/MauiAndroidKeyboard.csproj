@@ -32,25 +32,29 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android33.0|AnyCPU'">
 	  <EnableLLVM>False</EnableLLVM>
-	  <TrimMode>link</TrimMode>
+	  <TrimMode>copyused</TrimMode>
+	  <RunAOTCompilation>False</RunAOTCompilation>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android33.0|AnyCPU'">
-	  <EnableLLVM>False</EnableLLVM>
-	  <TrimMode>link</TrimMode>
+	  <EnableLLVM>True</EnableLLVM>
+	  <TrimMode>copyused</TrimMode>
 	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <PublishTrimmed>True</PublishTrimmed>
+	  <PublishTrimmed>False</PublishTrimmed>
 	  <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	  <AndroidUseAapt2>True</AndroidUseAapt2>
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	  <RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64</RuntimeIdentifiers>
-	  <RunAOTCompilation>False</RunAOTCompilation>
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	  <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
 	</PropertyGroup>
 
 	<PropertyGroup>
 	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 	  <PlatformTarget>AnyCPU</PlatformTarget>
+	  <AssemblyVersion>2022.12.28.1</AssemblyVersion>
+	  <FileVersion>2022.12.28.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -76,6 +80,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AutoUpdatePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HandlerEntryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

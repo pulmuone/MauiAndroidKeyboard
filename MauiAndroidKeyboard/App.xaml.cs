@@ -8,8 +8,10 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		//MainPage = new AppShell();
-		MainPage = new NavigationPage(new MainView());
+        VersionTracking.Track();
+
+        //MainPage = new AppShell();
+        MainPage = new NavigationPage(new MainView());
 
 	}
 }

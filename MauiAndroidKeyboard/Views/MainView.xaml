@@ -26,5 +26,13 @@
 		<Button Text="Handler Entry2"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView2}"/>
+
+		<Button Text="Auto Update" 
+				x:Name="AutoUpdateButton" 
+                Clicked="AutoUpdateButton_Clicked"/>
+
+
+		<Label x:Name="LabelVerison"/>
+		
 	</StackLayout>
 </ContentPage>

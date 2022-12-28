@@ -1,4 +1,5 @@
 using MauiAndroidKeyboard.Controls;
+using MauiAndroidKeyboard.Helpers;
 
 namespace MauiAndroidKeyboard.Views;
 
@@ -8,6 +9,18 @@ public partial class MainView : ContentPage
 	public MainView()
 	{
 		InitializeComponent();
+	}
+
+
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+
+		//((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Transparent;
+
+		this.LabelVerison.Text = String.Format("{0} {1}", "Ver ", Helpers.VersionCheck.Instance.GetVersionClient().ToString());
 	}
 
 	private void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
@@ -39,5 +52,18 @@ public partial class MainView : ContentPage
 	private void HandlerEntry_HandlerChanged(object sender, EventArgs e)
 	{
 		Console.WriteLine("b");
+	}
+
+	private async void AutoUpdateButton_Clicked(object sender, EventArgs e)
+	{
+		if (VersionCheck.Instance.IsNetworkAccess())
+		{
+			if (await VersionCheck.Instance.IsUpdate())
+			{
+				await VersionCheck.Instance.UpdateCheck();
+
+				return;
+			}
+		}
 	}
 }

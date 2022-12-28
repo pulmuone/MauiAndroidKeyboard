@@ -31,6 +31,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             
         }
 
+        //핸들러 기본 실행 #1
         protected override AppCompatEditText CreatePlatformView()
         {
             return new AppCompatEditText(base.Context);
@@ -45,6 +46,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             entry.VirtualKeyboardHandler = this;
         }
 
+        //핸들러 기본 실행 #2
         protected override void ConnectHandler(AppCompatEditText platformView)
         {
             base.ConnectHandler(PlatformView);
@@ -56,6 +58,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
         }
 
+        //핸들러 기본 실행 #3
         protected override void DisconnectHandler(AppCompatEditText platformView)
         {
             platformView.Dispose();
