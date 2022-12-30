@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-maccatalyst;net6.0-ios;net6.0-android33.0</TargetFrameworks>
+		<TargetFrameworks>net6.0-ios;net6.0-android33.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -14,7 +14,7 @@
 		<ApplicationTitle>MauiAndroidKeyboard</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mauiandroidkeyboard</ApplicationId>
+		<ApplicationId>com.gwise.maui</ApplicationId>
 		<ApplicationIdGuid>a13fb0bc-0ad9-4220-ba3e-af1f282b7341</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -22,11 +22,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<IncludeSymbols>False</IncludeSymbols>
 	</PropertyGroup>
 
@@ -37,17 +33,16 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android33.0|AnyCPU'">
-	  <EnableLLVM>True</EnableLLVM>
+	  <EnableLLVM>False</EnableLLVM>
 	  <TrimMode>copyused</TrimMode>
 	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <PublishTrimmed>False</PublishTrimmed>
+	  <PublishTrimmed>True</PublishTrimmed>
 	  <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	  <AndroidUseAapt2>True</AndroidUseAapt2>
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-	  <RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64</RuntimeIdentifiers>
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	  <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
+	  <RunAOTCompilation>False</RunAOTCompilation>
+	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
 	</PropertyGroup>
 
 	<PropertyGroup>

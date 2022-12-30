@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Maui.Controls.Compatibility.Hosting;
 using MauiAndroidKeyboard.Controls;
+using CommunityToolkit.Maui;
 
 namespace MauiAndroidKeyboard;
 public static class MauiProgram
@@ -11,7 +12,8 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCompatibility() //AddCompatibilityRenderer을 사용 할 경우만
-			.ConfigureFonts(fonts =>
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
