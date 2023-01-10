@@ -5,7 +5,8 @@
 			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
 			 xmlns:vw="clr-namespace:MauiAndroidKeyboard.Views"
-			 Title="MainView"
+			 xmlns:localization="clr-namespace:MauiAndroidKeyboard.Resources.Localization"
+			 Title="{localization:Translate MainTitle}"
 			 x:Name="pg">
 
 	<ContentPage.BindingContext>
@@ -29,8 +30,11 @@
 
 		<Button Text="Auto Update" 
 				x:Name="AutoUpdateButton" 
-                Clicked="AutoUpdateButton_Clicked"/>
+				Clicked="AutoUpdateButton_Clicked"/>
 
+        <Button Text="Translate" 
+				x:Name="Translate" 
+				Clicked="Translate_Clicked"/>
 
 		<Label x:Name="LabelVerison"/>
 		

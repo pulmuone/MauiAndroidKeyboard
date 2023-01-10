@@ -1,5 +1,7 @@
 using MauiAndroidKeyboard.Controls;
 using MauiAndroidKeyboard.Helpers;
+using MauiAndroidKeyboard.Resources.Localization;
+using System.Globalization;
 
 namespace MauiAndroidKeyboard.Views;
 
@@ -65,5 +67,10 @@ public partial class MainView : ContentPage
 				return;
 			}
 		}
+	}
+
+	private void Translate_Clicked(object sender, EventArgs e)
+	{
+		LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo("ko"); //ko, en
 	}
 }
