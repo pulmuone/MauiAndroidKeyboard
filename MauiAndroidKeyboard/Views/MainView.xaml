@@ -36,7 +36,12 @@
 				x:Name="Translate" 
 				Clicked="Translate_Clicked"/>
 
-		<Label x:Name="LabelVerison"/>
+        <Button Text="ViewModelCallView"
+                x:Name="ViewModelCallView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type vw:ViewModelCallView}"/>
+       
+        <Label x:Name="LabelVerison"/>
 		
 	</StackLayout>
 </ContentPage>

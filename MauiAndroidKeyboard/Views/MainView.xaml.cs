@@ -72,5 +72,5 @@ public partial class MainView : ContentPage
 	private void Translate_Clicked(object sender, EventArgs e)
 	{
 		LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo("ko"); //ko, en
-	}
+	}    
 }
