@@ -19,6 +19,8 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
 
+        //Microsoft.Maui.ApplicationModel.Platform.Init(this, savedInstanceState);
+
         //this.Window.AddFlags(Android.Views.WindowManagerFlags.KeepScreenOn);
 
         if (Build.VERSION.SdkInt >= BuildVersionCodes.M && Build.VERSION.SdkInt < BuildVersionCodes.Tiramisu) //23이상부터
@@ -26,4 +28,18 @@ public class MainActivity : MauiAppCompatActivity
             ActivityCompat.RequestPermissions(this, PERMISSIONS, 0);
         }
     }
+
+    //protected override void OnResume()
+    //{
+    //    base.OnResume();
+
+    //    Microsoft.Maui.ApplicationModel.Platform.OnResume(this);
+    //}
+
+    //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+    //{
+    //    Microsoft.Maui.ApplicationModel.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+    //}
 }

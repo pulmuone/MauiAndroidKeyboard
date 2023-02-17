@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls.Compatibility.Hosting;
 using MauiAndroidKeyboard.Controls;
 using CommunityToolkit.Maui;
+using MauiAndroidKeyboard.Interfaces;
 
 namespace MauiAndroidKeyboard;
 public static class MauiProgram

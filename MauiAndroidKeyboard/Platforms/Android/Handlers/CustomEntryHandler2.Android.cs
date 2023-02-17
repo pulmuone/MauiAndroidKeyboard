@@ -1,12 +1,12 @@
-﻿using Android.Content;
+﻿using Android.Runtime;
 using Android.Util;
+using Android.Views;
 using Android.Views.InputMethods;
 using AndroidX.AppCompat.Widget;
 using MauiAndroidKeyboard.Controls;
 using MauiAndroidKeyboard.Interfaces;
-using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
-using System.Runtime.CompilerServices;
+using static Android.Views.View;
 using content = Android.Content;
 using view = Android.Views;
 
@@ -54,8 +54,10 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.SetPadding(0, 0, 0, 0);
             platformView.SetTextIsSelectable(true);
             platformView.SetSelectAllOnFocus(true);
-            platformView.SetTextSize(ComplexUnitType.Sp, 14);
+            //platformView.SetTextSize(ComplexUnitType.Sp, 14);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
+
+            platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
         }
 
         //핸들러 기본 실행 #3
@@ -131,6 +133,28 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
             var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
             inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
+        }
+
+        class MyOnKeyListener : Java.Lang.Object, IOnKeyListener
+        {
+            IView vv;
+            public MyOnKeyListener(IView view)
+            {
+                vv = view;
+            }
+
+            ///handler.PlatformView.RequestFocus(); 하면 한번 더 진입한다.
+            public bool OnKey(view.View v, [GeneratedEnum] Keycode keyCode, KeyEvent e)
+            {
+                if (e.Action == KeyEventActions.Down && keyCode == Keycode.Enter)
+                {
+                    (vv as HandlerEntry2).SendCompleted();
+
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 }

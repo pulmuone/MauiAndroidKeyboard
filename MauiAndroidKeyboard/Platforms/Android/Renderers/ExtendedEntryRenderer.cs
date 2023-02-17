@@ -33,13 +33,22 @@ namespace MauiAndroidKeyboard.Platforms.Android.Renderers
                 var edittext = (EditText)Control;
 
                 edittext.SetPadding(0, 0, 0, 0);
-                //edittext.SetTextIsSelectable(true);
-                //edittext.SetSelectAllOnFocus(true);
+                edittext.SetTextIsSelectable(true);
+                edittext.SetSelectAllOnFocus(true);
                 edittext.ShowSoftInputOnFocus = true; //true: 키보드 보임, false: 키보드 안보임
 
                 var view = (ExtendedEntry)Element;
 
                 view.VirtualKeyboardHandler = this;
+
+                if (view.IsReadOnly == true)
+                {
+                    edittext.Enabled = false;
+                }
+                else
+                {
+                    edittext.Enabled = true;
+                }
             }
         }
 

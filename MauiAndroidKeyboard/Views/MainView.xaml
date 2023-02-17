@@ -19,7 +19,7 @@
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:RendererEntryView}"/>
 
-		<Button Text="Handler Entry (Don't work)"
+		<Button Text="Handler Entry"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView}"/>
 
