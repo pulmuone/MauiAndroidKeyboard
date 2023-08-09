@@ -2,29 +2,34 @@
 using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
+using Android.Widget;
 using AndroidX.AppCompat.Widget;
+using CommunityToolkit.Maui.Core.Platform;
 using MauiAndroidKeyboard.Controls;
 using MauiAndroidKeyboard.Interfaces;
 using Microsoft.Maui.Handlers;
 using static Android.Views.View;
 using content = Android.Content;
 using view = Android.Views;
+using inputTypes = Android.Text.InputTypes;
 
 namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
     public class CustomEntryHandler2 : EntryHandler, IVirtualKeyboard
     {
+
+        //ViewHandler로 개발하지 않아도 작동됨.
         public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new PropertyMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewMapper)
         {
-            [nameof(HandlerEntry2.VirtualKeyboardToggle)] = MapVirtualKeyboardToggle
+            //[nameof(HandlerEntry2.VirtualKeyboardToggle)] = MapVirtualKeyboardToggle
         };
 
-        //동작하지 않음.
-        public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new(ViewCommandMapper)
-        {
-            [nameof(HandlerEntry2.ShowKeyboardRequested)] = MapShowKeyboardRequested,
-            [nameof(HandlerEntry2.HideKeyboardRequested)] = MapHideKeyboardRequested
-        };
+        //동작하지 않음.ViewHandler로 개발한 경우만 적용됨
+        //public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new(ViewCommandMapper)
+        //{
+        //    [nameof(HandlerEntry2.ShowKeyboardRequested)] = MapShowKeyboardRequested,
+        //    [nameof(HandlerEntry2.HideKeyboardRequested)] = MapHideKeyboardRequested
+        //};
 
         public CustomEntryHandler2() : base(PropertyMapper)
         {
@@ -56,8 +61,25 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.SetSelectAllOnFocus(true);
             //platformView.SetTextSize(ComplexUnitType.Sp, 14);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
+            //platformView.SetSingleLine(true);
+            platformView.InputType = inputTypes.ClassText;
+            //platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
 
-            platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
+            platformView.EditorAction += PlatformView_EditorAction;
+
+        }
+
+        private void PlatformView_EditorAction(object sender, TextView.EditorActionEventArgs e)
+        {
+            var actionId = e.ActionId;
+            var evt = e.Event;
+
+            if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+            {
+                VirtualView?.Completed();
+            }
+
+            e.Handled = true;
         }
 
         //핸들러 기본 실행 #3
@@ -66,7 +88,11 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.Dispose();
 
             base.DisconnectHandler(platformView);
+
+            platformView.EditorAction -= PlatformView_EditorAction;
         }
+
+
 
         static void MapVirtualKeyboardToggle(CustomEntryHandler2 handler, HandlerEntry2 entry)
         {
@@ -117,6 +143,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
         }
 
+        //================사용
         public void ShowKeyboard()
         {
             this.PlatformView.RequestFocus();
@@ -126,6 +153,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             inputMethodManager.ShowSoftInput(this.PlatformView, ShowFlags.Forced);
         }
 
+        //================사용
         public void HideKeyboard()
         {
             this.PlatformView.RequestFocus();
@@ -133,6 +161,12 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
             var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
             inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
+        }
+
+        public void StatusKeyboard()
+        {
+            Console.WriteLine(this.PlatformView.ShowSoftInputOnFocus);
+            
         }
 
         class MyOnKeyListener : Java.Lang.Object, IOnKeyListener

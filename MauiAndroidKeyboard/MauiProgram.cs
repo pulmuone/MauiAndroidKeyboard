@@ -26,12 +26,14 @@ public static class MauiProgram
 
 			handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler2));
 			handlers.AddHandler(typeof(MauiAndroidKeyboard.Views.AutoUpdatePage), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.AutoUpdatePageHandler));
+
+			DependencyService.Register<MauiAndroidKeyboard.Interfaces.ISoftwareKeyboardService, MauiAndroidKeyboard.Platforms.Android.Services.SoftwareKeyboardService>();
 #endif
 
 #if IOS
 
 #endif
-			});
+            });
 
 		return builder.Build();
 	}

@@ -79,5 +79,10 @@ namespace MauiAndroidKeyboard.Platforms.Android.Renderers
 
             }
         }
+
+        public void StatusKeyboard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
