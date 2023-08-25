@@ -3,6 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView"
 			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
+			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
 			 Title="HandlerEntryView"
 			 x:Name="pg">
@@ -62,6 +63,11 @@
 									 ReturnCommandParameter="{x:Reference Name=pg}">
 			</renderers:HandlerEntry>
 		</Grid>
-	 
+
+		<Grid Grid.Row="3" Grid.Column="1">
+			<controls:CustomEntry x:Name="UserNameEntry">
+			</controls:CustomEntry>
+		</Grid>
+
 	</Grid>
 </ContentPage>

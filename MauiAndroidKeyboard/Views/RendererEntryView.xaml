@@ -7,7 +7,6 @@
              Title="RendererEntryView"
              x:Name="pg">
 
-
     <ContentPage.BindingContext>
         <vm:RendererEntryViewModel x:Name="vm"/>
     </ContentPage.BindingContext>
