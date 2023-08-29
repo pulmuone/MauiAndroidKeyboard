@@ -62,14 +62,14 @@ namespace MauiAndroidKeyboard.Controls
 
         public void ShowKeyboard()
         {
-            ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
             Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
         }
 
         public void HideKeyboard()
         {
-            HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
             Handler?.Invoke(nameof(HandlerEntry4.HideKeyboardRequested));
         }

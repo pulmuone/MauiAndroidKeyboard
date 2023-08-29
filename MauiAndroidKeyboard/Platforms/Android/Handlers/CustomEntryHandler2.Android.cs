@@ -14,7 +14,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
     public class CustomEntryHandler2 : EntryHandler
     {
 
-        public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new PropertyMapper<HandlerEntry2, CustomEntryHandler2>(Mapper)
+        public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new PropertyMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewMapper)
         {
             //[nameof(HandlerEntry2.VirtualKeyboardToggle)] = MapVirtualKeyboardToggle
         };
@@ -37,6 +37,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             //platformView.SetTextSize(ComplexUnitType.Sp, 14);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
             platformView.SetSingleLine(true);
+
             if (VirtualView.Keyboard == Keyboard.Numeric)
             {
                 platformView.SetRawInputType(InputTypes.ClassNumber);
@@ -46,6 +47,14 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
                 platformView.SetRawInputType(InputTypes.ClassText);
             }
 
+            if (VirtualView.IsReadOnly == true)
+            {
+                platformView.Enabled = false;
+            }
+            else
+            {
+                platformView.Enabled = true;
+            }
             platformView.EditorAction += PlatformView_EditorAction;
         }
 

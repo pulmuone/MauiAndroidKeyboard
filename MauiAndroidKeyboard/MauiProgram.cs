@@ -25,7 +25,7 @@ public static class MauiProgram
 			//handlers.AddCompatibilityRenderer(typeof(ExtendedEntry),typeof(MauiAndroidKeyboard.Platforms.Android.Renderers.ExtendedEntryRenderer));
 			//handlers.AddHandler(typeof(HandlerEntry), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler));
 
-			//handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler2));
+			handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler2));
 			handlers.AddHandler(typeof(MauiAndroidKeyboard.Views.AutoUpdatePage), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.AutoUpdatePageHandler));
 
 			//handlers.AddHandler(typeof(CustomEntry), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler3));

@@ -40,7 +40,6 @@
             <controls:HandlerEntry2 x:Name="UserIDEntry"
 									 Text="{Binding UserID}"
 									 IsTextPredictionEnabled="false" 
-									 ClearButtonVisibility="WhileEditing"
 									 ShowVirtualKeyboardOnFocus="False"
 									 Focused="UserIDEntry_Focused"
 									 ReturnCommand="{Binding UserIDCompletedCommand}"
@@ -59,7 +58,6 @@
 									 ShowVirtualKeyboardOnFocus="False"
 									 Keyboard="Numeric"
 									 Focused="PasswordEntry_Focused"
-									 ClearButtonVisibility="WhileEditing"
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
             </controls:HandlerEntry2>
