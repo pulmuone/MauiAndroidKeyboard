@@ -6,37 +6,40 @@
 			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
 			 Title="HandlerEntryView"
-			 x:Name="pg">
+			 Unloaded="pg_Unloaded"
+			 x:Name="pg"
+			 xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+			 ios:Page.UseSafeArea="False">
 
-	<ContentPage.BindingContext>
-		<vm:HandlerEntryViewModel x:Name="vm"/>
-	</ContentPage.BindingContext>
+    <ContentPage.BindingContext>
+        <vm:HandlerEntryViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
 
 
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Order="Primary" 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" 
 					 Priority="1" 
 					 Text="SoftKeyboard"
 					 Clicked="ToolbarItemKeyboard_Clicked"/>
-	</ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>
 
 
-	<Grid RowDefinitions="100, 50, 50, 50, 50"
+    <Grid RowDefinitions="100, 50, 50, 50, 50"
 		  ColumnDefinitions="120, *">
 
-		<Grid Grid.Row="0" Grid.ColumnSpan="2">
-			<Label 
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Label 
 			Text="Welcome to .NET MAUI!"
 			VerticalOptions="Center" 
 			HorizontalOptions="Center" />
-		</Grid>
+        </Grid>
 
-		<Grid Grid.Row="1" Grid.Column="0">
-			<Label Text="User ID" VerticalTextAlignment="End" />
-		</Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Label Text="User ID" VerticalTextAlignment="End" />
+        </Grid>
 
-		<Grid Grid.Row="1" Grid.Column="1">
-			<renderers:HandlerEntry x:Name="UserIDEntry"
+        <Grid Grid.Row="1" Grid.Column="1">
+            <renderers:HandlerEntry x:Name="UserIDEntry"
 									 Text="{Binding UserID}"
 									 IsTextPredictionEnabled="false" 
 									 ClearButtonVisibility="WhileEditing"
@@ -44,15 +47,15 @@
 									 Focused="UserIDEntry_Focused"
 									 ReturnCommand="{Binding UserIDCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-			</renderers:HandlerEntry>
-		</Grid>
+            </renderers:HandlerEntry>
+        </Grid>
 
-		<Grid Grid.Row="2" Grid.Column="0">
-			<Label Text="Password" VerticalTextAlignment="End"/>
-		</Grid>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Label Text="Password" VerticalTextAlignment="End"/>
+        </Grid>
 
-		<Grid Grid.Row="2" Grid.Column="1">
-			<renderers:HandlerEntry x:Name="PasswordEntry"
+        <Grid Grid.Row="2" Grid.Column="1">
+            <renderers:HandlerEntry x:Name="PasswordEntry"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
@@ -61,13 +64,17 @@
 									 ClearButtonVisibility="WhileEditing"
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-			</renderers:HandlerEntry>
-		</Grid>
+            </renderers:HandlerEntry>
+        </Grid>
 
-		<Grid Grid.Row="3" Grid.Column="1">
-			<controls:CustomEntry x:Name="UserNameEntry">
-			</controls:CustomEntry>
-		</Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <controls:CustomEntry x:Name="UserNameEntry" 
+                                  Text="{Binding Password}"
+                                  TextColor="Blue"
+                                  ReturnCommand="{Binding PasswordCompletedCommand}"
+								  ReturnCommandParameter="{x:Reference Name=pg}">
+            </controls:CustomEntry>
+        </Grid>
 
-	</Grid>
+    </Grid>
 </ContentPage>

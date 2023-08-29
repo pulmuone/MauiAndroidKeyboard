@@ -1,9 +1,4 @@
 ﻿using MauiAndroidKeyboard.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MauiAndroidKeyboard.ViewModels
@@ -36,7 +31,6 @@ namespace MauiAndroidKeyboard.ViewModels
 
             //ToDo
 
-
             IsControlEnable = true;
             IsBusy = false;
             (UserIDCompletedCommand as Command).ChangeCanExecute();
@@ -56,7 +50,6 @@ namespace MauiAndroidKeyboard.ViewModels
             entry.Focus();
 
             //ToDo
-
 
             IsControlEnable = true;
             IsBusy = false;

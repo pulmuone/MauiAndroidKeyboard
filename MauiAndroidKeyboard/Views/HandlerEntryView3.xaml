@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAndroidKeyboard.Views.HandlerEntryView3"
-             xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
-             xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"             
-             Title="HandlerEntryView3"
-             x:Name="pg">
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView3"
+			 xmlns:renderers="clr-namespace:MauiAndroidKeyboard.Controls"
+			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"             
+			 Title="HandlerEntryView3"
+			 x:Name="pg">
 
-    <ContentPage.BindingContext>
-        <vm:HandlerEntryViewModel2 x:Name="vm"/>
-    </ContentPage.BindingContext>
+	<ContentPage.BindingContext>
+		<vm:HandlerEntryViewModel2 x:Name="vm"/>
+	</ContentPage.BindingContext>
 
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" 
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Order="Primary" 
 					 Priority="1" 
 					 Text="SoftKeyboard"
 					 Clicked="ToolbarItemKeyboard_Clicked"/>
-    </ContentPage.ToolbarItems>
+	</ContentPage.ToolbarItems>
 
 
-    <Grid RowDefinitions="100, 40, 40, 40, 40"
+	<Grid RowDefinitions="100, 40, 40, 40, 40"
 		  ColumnDefinitions="120, *"
 		  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Label 
+		<Grid Grid.Row="0" Grid.ColumnSpan="2">
+			<Label 
 			Text="Welcome to .NET MAUI!"
 			VerticalOptions="Center" 
 			HorizontalOptions="Center" />
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Label Text="User ID" VerticalTextAlignment="Center"  HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
-        </Grid>
+		<Grid Grid.Row="1" Grid.Column="0">
+			<Label Text="User ID" VerticalTextAlignment="Center"  HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
+		</Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <renderers:HandlerEntry3 x:Name="UserIDEntry"
+		<Grid Grid.Row="1" Grid.Column="1">
+			<renderers:HandlerEntry3 x:Name="UserIDEntry"
 									 Text="{Binding UserID}"
 									 IsTextPredictionEnabled="false" 
 									 ClearButtonVisibility="WhileEditing"
@@ -44,15 +44,15 @@
 									 Focused="UserIDEntry_Focused"
 									 ReturnCommand="{Binding UserIDCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </renderers:HandlerEntry3>
-        </Grid>
+			</renderers:HandlerEntry3>
+		</Grid>
 
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Label Text="Password" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Gray"/>
-        </Grid>
+		<Grid Grid.Row="2" Grid.Column="0">
+			<Label Text="Password" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Gray"/>
+		</Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1" >
-            <renderers:HandlerEntry3 x:Name="PasswordEntry" Margin="0,0,0,0"
+		<Grid Grid.Row="2" Grid.Column="1" >
+			<renderers:HandlerEntry3 x:Name="PasswordEntry" Margin="0,0,0,0"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
@@ -61,20 +61,20 @@
 									 ClearButtonVisibility="WhileEditing"
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </renderers:HandlerEntry3>
-        </Grid>
+			</renderers:HandlerEntry3>
+		</Grid>
 
-        <Grid Grid.Row="3" Grid.Column="0">
-            <Label Text="Company" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
-        </Grid>
+		<Grid Grid.Row="3" Grid.Column="0">
+			<Label Text="Company" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Yellow"/>
+		</Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" >
-            <Entry x:Name="CompanyEntry"
+		<Grid Grid.Row="3" Grid.Column="1" >
+			<Entry x:Name="CompanyEntry"
 				   VerticalOptions="FillAndExpand"
 					Placeholder="Enter text"
 				   IsTextPredictionEnabled="false" 
 				   Keyboard="Numeric">
-            </Entry>
-        </Grid>
-    </Grid>
+			</Entry>
+		</Grid>
+	</Grid>
 </ContentPage>

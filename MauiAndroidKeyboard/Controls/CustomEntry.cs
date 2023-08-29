@@ -22,6 +22,6 @@ namespace MauiAndroidKeyboard.Controls
         {
             get { return (Color)GetValue(TextColorProperty); }
             set { SetValue(TextColorProperty, value); }
-        }
+        }     
     }
 }

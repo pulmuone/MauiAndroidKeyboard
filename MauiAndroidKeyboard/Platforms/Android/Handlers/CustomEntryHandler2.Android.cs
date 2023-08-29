@@ -33,7 +33,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         public CustomEntryHandler2() : base(PropertyMapper)
         {
-            
+
         }
 
         //핸들러 기본 실행 #1
@@ -85,11 +85,10 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         //핸들러 기본 실행 #3
         protected override void DisconnectHandler(AppCompatEditText platformView)
         {
+            platformView.EditorAction -= PlatformView_EditorAction;
             platformView.Dispose();
 
             base.DisconnectHandler(platformView);
-
-            platformView.EditorAction -= PlatformView_EditorAction;
         }
 
 
@@ -166,7 +165,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         public void StatusKeyboard()
         {
             Console.WriteLine(this.PlatformView.ShowSoftInputOnFocus);
-            
+
         }
 
         class MyOnKeyListener : Java.Lang.Object, IOnKeyListener

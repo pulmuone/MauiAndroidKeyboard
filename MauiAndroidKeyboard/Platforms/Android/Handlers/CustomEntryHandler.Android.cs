@@ -47,7 +47,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             //VirtualView : Cross-platform Control 접근
 
             //Perform any control setup here
-            platformView.SetPadding(0, 0, 0, 0);
+            //platformView.SetPadding(0, 0, 0, 0);
             //platformView.SetHeight(40);
             //platformView.SetMaxHeight(40);
             platformView.SetSingleLine(true);
@@ -64,7 +64,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.SetSelectAllOnFocus(true);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
 
-            platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
+            //platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
         }
 
         protected override void DisconnectHandler(EditText platformView)
