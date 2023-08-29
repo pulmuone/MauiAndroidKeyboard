@@ -12,24 +12,12 @@ namespace MauiAndroidKeyboard.Controls
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
             = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(HandlerEntry2), true);
 
-        public static readonly BindableProperty VirtualKeyboardToggleProperty
-            = BindableProperty.Create("VirtualKeyboardToggle", typeof(bool), typeof(HandlerEntry2), true);
-
-        public bool VirtualKeyboardToggle
-        {
-            get => (bool)this.GetValue(VirtualKeyboardToggleProperty);
-            set => this.SetValue(VirtualKeyboardToggleProperty, value);
-        }
 
         public bool ShowVirtualKeyboardOnFocus
         {
             get => (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty);
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
-
-        public SoftKeyboardViewStatus SoftKeyboardViewStatus;
-
-        public IVirtualKeyboard VirtualKeyboardHandler { get; set; }
 
         #region Events
         public event EventHandler ShowKeyboardRequested;
@@ -74,29 +62,16 @@ namespace MauiAndroidKeyboard.Controls
 
         public void ShowKeyboard()
         {
-            //SoftKeyboardViewStatus = SoftKeyboardViewStatus.SHOW;
-
-            //VirtualKeyboardToggle = VirtualKeyboardToggle ? false: true;
-
-            VirtualKeyboardHandler?.ShowKeyboard();
-
-            //VirtualKeyboardHandler?.StatusKeyboard();
-
-            //ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            ShowKeyboardRequested?.Invoke(this, EventArgs.Empty);
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
-            //Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
+            Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
         }
 
         public void HideKeyboard()
         {
-            //SoftKeyboardViewStatus = SoftKeyboardViewStatus.HIDE;
-
-            //VirtualKeyboardToggle = VirtualKeyboardToggle ? false : true;
-
-            VirtualKeyboardHandler?.HideKeyboard();
-
-            //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
-            //Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
+            HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
+            //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
+            Handler?.Invoke(nameof(HandlerEntry4.HideKeyboardRequested));
         }
     }
 }

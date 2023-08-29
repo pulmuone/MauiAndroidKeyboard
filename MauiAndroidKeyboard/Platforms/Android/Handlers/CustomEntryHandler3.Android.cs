@@ -13,6 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using inputTypes = Android.Text.InputTypes;
+using content = Android.Content;
+using view = Android.Views;
+
 
 namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
@@ -24,6 +27,11 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             [nameof(CustomEntry.TextColor)] = MapTextColor
         };
 
+        public static CommandMapper<CustomEntry, CustomEntryHandler3> CommandMapper = new CommandMapper<CustomEntry, CustomEntryHandler3>(ViewCommandMapper)
+        {
+            [nameof(CustomEntry.ShowKeyboardRequested)] = MapShowKeyboardRequested,
+            [nameof(CustomEntry.HideKeyboardRequested)] = MapHideKeyboardRequested
+        };
 
         protected override AppCompatEditText CreatePlatformView() => new AppCompatEditText(Context);
 
@@ -36,7 +44,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             platformView.SetTextIsSelectable(true);
             platformView.SetSelectAllOnFocus(true);
             //platformView.SetTextSize(ComplexUnitType.Sp, 14);
-            platformView.ShowSoftInputOnFocus = true; //true: Show Keyboard, false: Hide Keyboard
+            platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
             platformView.SetSingleLine(true);
             //platformView.InputType = inputTypes.ClassText;
             //platformView.SetOnKeyListener(new MyOnKeyListener(VirtualView));
@@ -51,7 +59,8 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
             if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
             {
-                VirtualView?.ReturnCommand.Execute(VirtualView?.ReturnCommandParameter);
+                //VirtualView?.ReturnCommand.Execute(VirtualView?.ReturnCommandParameter);
+                (VirtualView as Entry).SendCompleted();
             }
 
             e.Handled = true;
@@ -78,7 +87,28 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         }
 
 
-        //기본으로 3개 생성자
+
+        public static void MapShowKeyboardRequested(CustomEntryHandler3 handler, CustomEntry entry, object? args)
+        {
+            handler.PlatformView.RequestFocus();
+
+            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+            var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
+            inputMethodManager.ShowSoftInput(handler.PlatformView, ShowFlags.Forced);
+        }
+
+        public static void MapHideKeyboardRequested(CustomEntryHandler3 handler, CustomEntry entry, object? args)
+        {
+            handler.PlatformView.RequestFocus();
+
+            var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
+            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+            inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
+        }
+
+
+
+        //생성자 어디로 진입하는지 체크해야함.
         public CustomEntryHandler3(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
         {
 
@@ -89,7 +119,8 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         }
 
-        public CustomEntryHandler3() : base(PropertyMapper)
+        //이렇게 만들어야 함.
+        public CustomEntryHandler3() : base(PropertyMapper, CommandMapper)
         {
 
         }

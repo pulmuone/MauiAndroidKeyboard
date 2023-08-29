@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView4"
+			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"             
+			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
+			 Unloaded="pg_Unloaded"
+			 xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+			 ios:Page.UseSafeArea="False"             
+			 Title="HandlerEntryView4"
+             x:Name="pg">
+
+	<ContentPage.BindingContext>
+		<vm:HandlerEntryViewModel4 x:Name="vm"/>
+	</ContentPage.BindingContext>
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Order="Primary" 
+					 Priority="1" 
+					 Text="SoftKeyboard"
+					 Clicked="ToolbarItemKeyboard_Clicked"/>
+	</ContentPage.ToolbarItems>
+
+
+
+	<Grid RowDefinitions="100, 50, 50, 50, 50"
+		  ColumnDefinitions="120, *">
+
+		<Grid Grid.Row="0" Grid.ColumnSpan="2">
+			<Label 
+			Text="Welcome to .NET MAUI!"
+			VerticalOptions="Center" 
+			HorizontalOptions="Center" />
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="0">
+			<Label Text="User ID" VerticalTextAlignment="End" />
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="1">
+			<controls:HandlerEntry4 x:Name="UserIDEntry"
+									 Text="{Binding UserID}"
+									 IsTextPredictionEnabled="false" 
+									 ClearButtonVisibility="WhileEditing"
+									 ShowVirtualKeyboardOnFocus="False"
+									 Focused="UserIDEntry_Focused"
+									 ReturnCommand="{Binding UserIDCompletedCommand}"
+									 ReturnCommandParameter="{x:Reference Name=pg}">
+			</controls:HandlerEntry4>
+		</Grid>
+
+		<Grid Grid.Row="2" Grid.Column="0">
+			<Label Text="Password" VerticalTextAlignment="End"/>
+		</Grid>
+
+		<Grid Grid.Row="2" Grid.Column="1">
+			<controls:HandlerEntry4 x:Name="PasswordEntry"
+									 Text="{Binding Password}"
+									 IsTextPredictionEnabled="false" 
+									 ShowVirtualKeyboardOnFocus="False"
+									 Keyboard="Numeric"
+									 Focused="PasswordEntry_Focused"
+									 ClearButtonVisibility="WhileEditing"
+									 ReturnCommand="{Binding PasswordCompletedCommand}"
+									 ReturnCommandParameter="{x:Reference Name=pg}">
+			</controls:HandlerEntry4>
+		</Grid>
+	</Grid>
+</ContentPage>

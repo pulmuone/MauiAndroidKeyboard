@@ -1,16 +1,25 @@
 ﻿using MauiAndroidKeyboard.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MauiAndroidKeyboard.ViewModels
 {
-    public class HandlerEntryViewModel : BaseViewModel
+    public class HandlerEntryViewModel4 : BaseViewModel
     {
         public ICommand UserIDCompletedCommand { get; private set; }
         public ICommand PasswordCompletedCommand { get; private set; }
         public string _userID;
         public string _password;
 
-        public HandlerEntryViewModel()
+        public string UserID { get => this._userID; set => SetProperty(ref this._userID, value); }
+
+        public string Password { get => this._password; set => SetProperty(ref this._password, value); }
+
+        public HandlerEntryViewModel4()
         {
             UserIDCompletedCommand = new Command<object>(async (obj) => await UserIDCompleted(obj), (obj) => IsControlEnable);
             PasswordCompletedCommand = new Command<object>(async (obj) => await PasswordCompleted(obj), (obj) => IsControlEnable);
@@ -22,8 +31,7 @@ namespace MauiAndroidKeyboard.ViewModels
             IsBusy = true;
             (UserIDCompletedCommand as Command).ChangeCanExecute();
 
-            HandlerEntry entry = ((HandlerEntry)((ContentPage)obj).FindByName("PasswordEntry"));
-            entry.IsEnabled = false;
+            HandlerEntry4 entry = ((HandlerEntry4)((ContentPage)obj).FindByName("PasswordEntry"));
             entry.IsEnabled = true;
             entry.CursorPosition = 0;
             entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
@@ -36,36 +44,20 @@ namespace MauiAndroidKeyboard.ViewModels
             (UserIDCompletedCommand as Command).ChangeCanExecute();
         }
 
+
         private async Task PasswordCompleted(object obj)
         {
             IsControlEnable = false;
             IsBusy = true;
             (PasswordCompletedCommand as Command).ChangeCanExecute();
 
-            //CustomEntry entry = ((CustomEntry)((ContentPage)obj).FindByName("UserNameEntry"));
-            //entry.IsEnabled = false;
-            //entry.IsEnabled = true;
-            //entry.CursorPosition = 0;
-            //entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
-            //entry.Focus();
-
             //ToDo
+            //로그인 업무 처리
+           
 
             IsControlEnable = true;
             IsBusy = false;
             (PasswordCompletedCommand as Command).ChangeCanExecute();
-        }
-
-        public string UserID
-        {
-            get => this._userID;
-            set => SetProperty(ref this._userID, value);
-        }
-
-        public string Password
-        {
-            get => this._password;
-            set => SetProperty(ref this._password, value);
         }
     }
 }

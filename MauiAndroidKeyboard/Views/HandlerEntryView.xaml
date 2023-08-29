@@ -55,7 +55,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1">
-            <renderers:HandlerEntry x:Name="PasswordEntry"
+            <!--<renderers:HandlerEntry x:Name="PasswordEntry"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
@@ -64,12 +64,14 @@
 									 ClearButtonVisibility="WhileEditing"
 									 ReturnCommand="{Binding PasswordCompletedCommand}"
 									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </renderers:HandlerEntry>
+            </renderers:HandlerEntry>-->
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="1">
             <controls:CustomEntry x:Name="UserNameEntry" 
                                   Text="{Binding Password}"
+                                  Focused="UserNameEntry_Focused"
+                                  ShowVirtualKeyboardOnFocus="False"
                                   TextColor="Blue"
                                   ReturnCommand="{Binding PasswordCompletedCommand}"
 								  ReturnCommandParameter="{x:Reference Name=pg}">

@@ -32,6 +32,10 @@
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView3}"/>
 
+        <Button Text="Handler Entry4"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:HandlerEntryView4}"/>
+
         <Button Text="Auto Update" 
 				x:Name="AutoUpdateButton" 
 				Clicked="AutoUpdateButton_Clicked"/>
