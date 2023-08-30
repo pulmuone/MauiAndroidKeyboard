@@ -3,65 +3,72 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView2"
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
-             xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
-             Unloaded="pg_Unloaded"
+			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
+			 Unloaded="OnContentPageUnloaded"
 			 Title="HandlerEntryView2"
-			 x:Name="pg">
+			 x:Name="_page">
 
-    <ContentPage.BindingContext>
-        <vm:HandlerEntryViewModel2 x:Name="vm"/>
-    </ContentPage.BindingContext>
+	<ContentPage.BindingContext>
+		<vm:HandlerEntryViewModel2 x:Name="vm"/>
+	</ContentPage.BindingContext>
 
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" 
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Order="Primary" 
 					 Priority="1" 
 					 Text="SoftKeyboard"
 					 Clicked="ToolbarItemKeyboard_Clicked"/>
-    </ContentPage.ToolbarItems>
+	</ContentPage.ToolbarItems>
 
 
-    <Grid RowDefinitions="100, 40, 40, 40, 40"
+	<Grid RowDefinitions="100, 40, 40, 40, 40"
 		  ColumnDefinitions="120, *"
 		  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Label 
-			Text="Welcome to .NET MAUI!"
+		<Grid Grid.Row="0" Grid.ColumnSpan="2">
+			<Label 
+			Text="EntryHandler"
 			VerticalOptions="Center" 
 			HorizontalOptions="Center" />
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Label Text="User ID" VerticalTextAlignment="Center"  HorizontalTextAlignment="End"/>
-        </Grid>
+		<Grid Grid.Row="1" Grid.Column="0">
+			<Label Text="User ID" VerticalTextAlignment="Center" />
+		</Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <controls:HandlerEntry2 x:Name="UserIDEntry"
+		<Grid Grid.Row="1" Grid.Column="1">
+			<controls:HandlerEntry2 x:Name="UserIDEntry"
 									 Text="{Binding UserID}"
+									 IsSpellCheckEnabled="False"
 									 IsTextPredictionEnabled="false" 
 									 ShowVirtualKeyboardOnFocus="False"
+									 ClearButtonVisibility="WhileEditing"
 									 Focused="UserIDEntry_Focused"
+									 Unfocused="UserIDEntry_Unfocused"
 									 ReturnCommand="{Binding UserIDCompletedCommand}"
-									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </controls:HandlerEntry2>
-        </Grid>
+									 ReturnCommandParameter="{x:Reference Name=_page}">
+			</controls:HandlerEntry2>
+		</Grid>
 
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Label Text="Password" VerticalTextAlignment="Center" HorizontalTextAlignment="End" BackgroundColor="Gray"/>
-        </Grid>
+		<Grid Grid.Row="2" Grid.Column="0">
+			<Label Text="Password" VerticalTextAlignment="Center" />
+		</Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1" >
-            <controls:HandlerEntry2 x:Name="PasswordEntry" Margin="0,0,0,0"
-									 Text="{Binding Password}"
-									 IsTextPredictionEnabled="false" 
-									 ShowVirtualKeyboardOnFocus="False"
-									 Keyboard="Numeric"
-									 Focused="PasswordEntry_Focused"
-									 ReturnCommand="{Binding PasswordCompletedCommand}"
-									 ReturnCommandParameter="{x:Reference Name=pg}">
-            </controls:HandlerEntry2>
-        </Grid>
-    </Grid>
+		<Grid Grid.Row="2" Grid.Column="1" >
+			<controls:HandlerEntry2 x:Name="PasswordEntry"
+									Text="{Binding Password}"
+									IsReadOnly="True"
+									IsSpellCheckEnabled="False"
+									IsTextPredictionEnabled="false" 
+									ShowVirtualKeyboardOnFocus="False"
+									ClearButtonVisibility="WhileEditing"
+									Keyboard="Numeric"
+									Focused="PasswordEntry_Focused"
+									Unfocused="PasswordEntry_Unfocused"
+									ReturnCommand="{Binding PasswordCompletedCommand}"
+									ReturnCommandParameter="{x:Reference Name=_page}">
+			</controls:HandlerEntry2>
+		</Grid>
+	</Grid>
 
 </ContentPage>

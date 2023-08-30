@@ -1,11 +1,12 @@
-﻿using Android.Text;
+﻿using Android.Graphics.Drawables;
+using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Content;
 using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui.Handlers;
-using System.Diagnostics;
 using content = Android.Content;
 using view = Android.Views;
 
@@ -16,17 +17,41 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new PropertyMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewMapper)
         {
-            //[nameof(HandlerEntry2.VirtualKeyboardToggle)] = MapVirtualKeyboardToggle
+            [nameof(HandlerEntry2.Text)] = MapText
         };
 
+        //EntryHandler에 CommandMapper 만들어져 있어서 new
         public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new CommandMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewCommandMapper)
         {
             [nameof(HandlerEntry2.ShowKeyboardRequested)] = MapShowKeyboardRequested,
-            [nameof(HandlerEntry2.HideKeyboardRequested)] = MapHideKeyboardRequested
+            [nameof(HandlerEntry2.HideKeyboardRequested)] = MapHideKeyboardRequested,
+            [nameof(HandlerEntry2.ClearFocusRequested)] = MapClearFocusRequested
         };
 
+        //자동으로 생성되는 생성자이나 파라미터 없는 생성자 필요
+        public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
+        {
+
+        }
+
+        //이거 없으면 PropertyMapper, CommandMapper 작동 안함.
+        public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)
+        {
+
+        }
+
+        //#2
         protected override AppCompatEditText CreatePlatformView() => new AppCompatEditText(Context);
 
+        //#3
+        //public override void SetVirtualView(IView view)
+        //{
+        //    base.SetVirtualView(view);
+
+        //    var entry = (HandlerEntry2)view;
+        //}
+
+        //#4
         protected override void ConnectHandler(AppCompatEditText platformView)
         {
             base.ConnectHandler(PlatformView);
@@ -47,14 +72,6 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
                 platformView.SetRawInputType(InputTypes.ClassText);
             }
 
-            if (VirtualView.IsReadOnly == true)
-            {
-                platformView.Enabled = false;
-            }
-            else
-            {
-                platformView.Enabled = true;
-            }
             platformView.EditorAction += PlatformView_EditorAction;
         }
 
@@ -65,7 +82,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
             if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
             {
-                VirtualView?.Completed();
+                (VirtualView as Entry).SendCompleted();
             }
 
             e.Handled = true;
@@ -73,11 +90,12 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         protected override void DisconnectHandler(AppCompatEditText platformView)
         {
+            base.DisconnectHandler(platformView);
+
             // Perform any native view cleanup here
             platformView.EditorAction -= PlatformView_EditorAction;
 
             platformView.Dispose();
-            base.DisconnectHandler(platformView);
         }
 
         public static void MapShowKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
@@ -94,26 +112,21 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             handler.PlatformView.RequestFocus();
 
             var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
-            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
-            inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
+            inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
+            //var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+            //inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
         }
 
-
-        //자동으로 생성되는 생성자이나 파라미터 없는 생성자 필요
-        public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
+        public static void MapClearFocusRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
+            handler.PlatformView.ClearFocus();
 
+            var inputMethodManager = MauiApplication.Current.GetSystemService(content.Context.InputMethodService) as view.InputMethods.InputMethodManager;
+            inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
         }
 
-        public CustomEntryHandler2(IPropertyMapper mapper) : base(mapper)
-        {
-
-        }
-
-        //이렇게 만들어야 함.
-        public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)
-        {
-            Debug.WriteLine("test");
-        }
+        Drawable? _clearButtonDrawable;
+        protected override Drawable GetClearButtonDrawable() =>
+            _clearButtonDrawable ??= ContextCompat.GetDrawable(Context, Resource.Drawable.abc_ic_clear_material);
     }
 }

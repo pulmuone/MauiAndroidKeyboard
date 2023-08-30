@@ -1,22 +1,11 @@
 ﻿using MauiAndroidKeyboard.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiAndroidKeyboard.Controls
 {
     public class ExtendedEntry : Entry
     {
-
-        /// <summary>
-        /// The ShowVirtualKeyboardOnFocus property
-        /// </summary>
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty =
             BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(ExtendedEntry), true);
-
-        public IVirtualKeyboard VirtualKeyboardHandler { get; set; }
 
         public bool ShowVirtualKeyboardOnFocus
         {
@@ -24,7 +13,7 @@ namespace MauiAndroidKeyboard.Controls
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
 
-        public SoftKeyboardViewStatus SoftKeyboardViewStatus;
+        public IVirtualKeyboard VirtualKeyboardHandler { get; set; }
 
         public ExtendedEntry()
         {
@@ -63,18 +52,17 @@ namespace MauiAndroidKeyboard.Controls
 
         public void ShowKeyboard()
         {
-            SoftKeyboardViewStatus = SoftKeyboardViewStatus.SHOW;
-#if ANDROID
             VirtualKeyboardHandler?.ShowKeyboard();
-#endif
         }
 
         public void HideKeyboard()
         {
-            SoftKeyboardViewStatus = SoftKeyboardViewStatus.HIDE;
-#if ANDROID
             VirtualKeyboardHandler?.HideKeyboard();
-#endif
+        }
+
+        public void ClearFocus()
+        {
+            VirtualKeyboardHandler?.EntryClearFocus();
         }
     }
 }

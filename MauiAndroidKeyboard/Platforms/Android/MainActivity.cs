@@ -19,6 +19,8 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
 
+        //AndroidX.AppCompat.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
+
         //Microsoft.Maui.ApplicationModel.Platform.Init(this, savedInstanceState);
 
         //this.Window.AddFlags(Android.Views.WindowManagerFlags.KeepScreenOn);

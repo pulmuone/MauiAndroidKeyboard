@@ -39,8 +39,32 @@ public partial class HandlerEntryView2 : ContentPage
         _currententry = sender as HandlerEntry2;
     }
 
-    private void pg_Unloaded(object sender, EventArgs e)
+    private void OnContentPageUnloaded(object sender, EventArgs e)
     {
-        _currententry?.Handler?.DisconnectHandler();
+        UserIDEntry.Handler?.DisconnectHandler();
+        PasswordEntry.Handler?.DisconnectHandler();
+    }
+
+    private void UserIDEntry_Unfocused(object sender, FocusEventArgs e)
+    {
+        if (_currententry != null)
+        {
+            if (this._currententry.IsSoftKeyboardShowing())
+            {
+                _currententry?.ClearFocus();
+            }
+        }
+    }
+
+    private void PasswordEntry_Unfocused(object sender, FocusEventArgs e)
+    {
+        if (_currententry != null)
+        {
+            if (this._currententry.IsSoftKeyboardShowing())
+            {
+                _currententry?.ClearFocus();
+            }
+        }
+
     }
 }

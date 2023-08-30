@@ -12,6 +12,7 @@ namespace MauiAndroidKeyboard.Controls
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
             = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(HandlerEntry2), true);
 
+        public static new readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(HandlerEntry4), null);
 
         public bool ShowVirtualKeyboardOnFocus
         {
@@ -19,9 +20,17 @@ namespace MauiAndroidKeyboard.Controls
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
 
+        public new string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+
         #region Events
         public event EventHandler ShowKeyboardRequested;
         public event EventHandler HideKeyboardRequested;
+        public event EventHandler ClearFocusRequested;
         #endregion
 
 
@@ -71,7 +80,12 @@ namespace MauiAndroidKeyboard.Controls
         {
             //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
-            Handler?.Invoke(nameof(HandlerEntry4.HideKeyboardRequested));
+            Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
+        }
+
+        public void ClearFocus()
+        {
+            Handler?.Invoke(nameof(HandlerEntry2.ClearFocusRequested));
         }
     }
 }

@@ -10,5 +10,6 @@ namespace MauiAndroidKeyboard.Interfaces
     {
         void ShowKeyboard();
         void HideKeyboard();
+        void EntryClearFocus();
     }
 }

@@ -11,15 +11,15 @@ namespace MauiAndroidKeyboard.Controls
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
             = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(HandlerEntry4), true);
 
-        //public static readonly BindableProperty TextProperty  = BindableProperty.Create(nameof(Text), typeof(string), typeof(HandlerEntry4), null);
+        public static new readonly BindableProperty TextProperty  = BindableProperty.Create(nameof(Text), typeof(string), typeof(HandlerEntry4), null);
 
         //public static readonly BindableProperty TextColorProperty  = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(HandlerEntry4), null);
 
-        //public string Text
-        //{
-        //    get { return (string)GetValue(TextProperty); }
-        //    set { SetValue(TextProperty, value); }
-        //}
+        public new string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
 
         //public Color TextColor
         //{
@@ -33,10 +33,10 @@ namespace MauiAndroidKeyboard.Controls
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
 
-
         #region Events
         public event EventHandler ShowKeyboardRequested;
         public event EventHandler HideKeyboardRequested;
+        public event EventHandler ClearFocusRequested;
         #endregion
 
 
@@ -85,6 +85,11 @@ namespace MauiAndroidKeyboard.Controls
         {
             //HideKeyboardRequested?.Invoke(this, EventArgs.Empty);
             Handler?.Invoke(nameof(HandlerEntry4.HideKeyboardRequested));
+        }
+
+        public void ClearFocus() 
+        {
+            Handler?.Invoke(nameof(HandlerEntry4.ClearFocusRequested));
         }
     }
 }

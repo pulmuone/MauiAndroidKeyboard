@@ -33,8 +33,8 @@ namespace MauiAndroidKeyboard.ViewModels
 
             HandlerEntry4 entry = ((HandlerEntry4)((ContentPage)obj).FindByName("PasswordEntry"));
             entry.IsEnabled = true;
-            entry.CursorPosition = 0;
-            entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
+            //entry.CursorPosition = 0;
+            //entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
             entry.Focus();
 
             //ToDo
@@ -53,7 +53,10 @@ namespace MauiAndroidKeyboard.ViewModels
 
             //ToDo
             //로그인 업무 처리
-           
+
+            HandlerEntry4 entry = ((HandlerEntry4)((ContentPage)obj).FindByName("UserIDEntry"));
+            //entry.IsEnabled = true;
+            entry.Focus();
 
             IsControlEnable = true;
             IsBusy = false;

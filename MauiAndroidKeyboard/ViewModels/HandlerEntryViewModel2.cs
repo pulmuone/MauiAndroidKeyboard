@@ -44,6 +44,9 @@ namespace MauiAndroidKeyboard.ViewModels
 
             //ToDo
             //로그인 작업 진행
+            HandlerEntry2 entry = ((HandlerEntry2)((ContentPage)obj).FindByName("UserIDEntry"));
+            //entry.IsEnabled = true;
+            entry.Focus();
 
             IsControlEnable = true;
             IsBusy = false;

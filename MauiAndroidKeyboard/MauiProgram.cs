@@ -22,15 +22,11 @@ public static class MauiProgram
 			.ConfigureMauiHandlers((handlers) =>
 			{
 #if ANDROID
-			//handlers.AddCompatibilityRenderer(typeof(ExtendedEntry),typeof(MauiAndroidKeyboard.Platforms.Android.Renderers.ExtendedEntryRenderer));
+			handlers.AddCompatibilityRenderer(typeof(ExtendedEntry),typeof(MauiAndroidKeyboard.Platforms.Android.Renderers.ExtendedEntryRenderer));
 			//handlers.AddHandler(typeof(HandlerEntry), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler));
-
 			handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler2));
-			handlers.AddHandler(typeof(MauiAndroidKeyboard.Views.AutoUpdatePage), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.AutoUpdatePageHandler));
-
-			//handlers.AddHandler(typeof(CustomEntry), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler3));
-
 			handlers.AddHandler(typeof(HandlerEntry4), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.CustomEntryHandler4));
+			handlers.AddHandler(typeof(MauiAndroidKeyboard.Views.AutoUpdatePage), typeof(MauiAndroidKeyboard.Platforms.Android.Handlers.AutoUpdatePageHandler));
 
 			DependencyService.Register<MauiAndroidKeyboard.Interfaces.ISoftwareKeyboardService, MauiAndroidKeyboard.Platforms.Android.Services.SoftwareKeyboardService>();
 #endif
