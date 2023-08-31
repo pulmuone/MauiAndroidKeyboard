@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="MauiAndroidKeyboard.Views.KeyboardExtensionsPage"
+			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"             
+			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
+			 Title="KeyboardExtensionsPage"
+			 x:Name="_page">
+
+	<ContentPage.BindingContext>
+		<vm:HandlerEntryViewModel4 x:Name="vm"/>
+	</ContentPage.BindingContext>
+	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Order="Primary" 
+					 Priority="1" 
+					 Text="SoftKeyboard"
+					 Clicked="ToolbarItemKeyboard_Clicked"/>
+	</ContentPage.ToolbarItems>
+
+	<Grid RowDefinitions="100, 50, 50, 50, 50"
+		  ColumnDefinitions="120, *">
+
+		<Grid Grid.Row="0" Grid.ColumnSpan="2">
+			<Label Text="Welcome to .NET MAUI!"
+				   VerticalOptions="Center" 
+				   HorizontalOptions="Center" />
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="0">
+			<Label Text="User ID" VerticalTextAlignment="Center" />
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="1">
+			<controls:KeyboardEntry x:Name="UserIDEntry"
+									VerticalTextAlignment="End"
+									Text="{Binding UserID}"
+									IsSpellCheckEnabled="False"
+									IsTextPredictionEnabled="False" 
+									ShowVirtualKeyboardOnFocus="False"
+									Focused="UserIDEntry_Focused"
+									Unfocused="UserIDEntry_Unfocused"
+									ReturnCommand="{Binding UserIDCompletedCommand}"
+									ReturnCommandParameter="{x:Reference Name=_page}">
+			</controls:KeyboardEntry>
+		</Grid>
+
+		<Grid Grid.Row="2" Grid.Column="0">
+			<Label Text="Password" VerticalTextAlignment="Center"/>
+		</Grid>
+
+		<Grid Grid.Row="2" Grid.Column="1">
+			<controls:KeyboardEntry x:Name="PasswordEntry"
+									Text="{Binding Password}"
+									IsSpellCheckEnabled="False"
+									IsTextPredictionEnabled="False" 
+									ShowVirtualKeyboardOnFocus="False"
+									ClearButtonVisibility="WhileEditing"
+									Keyboard="Numeric"
+									Unfocused="PasswordEntry_Unfocused"
+									Focused="PasswordEntry_Focused"
+									ReturnCommand="{Binding PasswordCompletedCommand}"
+									ReturnCommandParameter="{x:Reference Name=_page}">
+			</controls:KeyboardEntry>
+		</Grid>
+	</Grid>
+</ContentPage>

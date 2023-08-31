@@ -102,9 +102,10 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         {
             handler.PlatformView.RequestFocus();
 
-            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+            //var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
             var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
-            inputMethodManager.ShowSoftInput(handler.PlatformView, ShowFlags.Forced);
+            //inputMethodManager.ShowSoftInput(handler.PlatformView, ShowFlags.Forced);
+            inputMethodManager.ShowSoftInput(handler.PlatformView, 0);
         }
 
         public static void MapHideKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
@@ -113,10 +114,13 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
             var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
+
             //var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
             //inputMethodManager.HideSoftInputFromWindow(activity.CurrentFocus?.WindowToken, HideSoftInputFlags.None);
         }
 
+        //키보드가 열려 있는 상태에서 이전화면으로 넘어 갈 때 SoftKeyboard를 Hidden시켜야 한다.
+        //포커스된 상태에서 다른 Entry로 넘어 갈때 이전 Focus가 사라지지 않는 현상 해결.
         public static void MapClearFocusRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
             handler.PlatformView.ClearFocus();
@@ -125,8 +129,9 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
         }
 
-        Drawable? _clearButtonDrawable;
-        protected override Drawable GetClearButtonDrawable() =>
-            _clearButtonDrawable ??= ContextCompat.GetDrawable(Context, Resource.Drawable.abc_ic_clear_material);
+        protected override Drawable GetClearButtonDrawable()
+        {
+            return ContextCompat.GetDrawable(Context, Resource.Drawable.abc_ic_clear_material);
+        }
     }
 }

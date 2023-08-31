@@ -15,32 +15,36 @@
 
 	<StackLayout Orientation="Vertical">
 
-        <Button Text="Renderer Entry"
+		<Button Text="Renderer Entry"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:RendererEntryView}"/>
-        
-        <Button Text="Handler Entry2"
+		
+		<Button Text="Handler Entry2"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView2}"/>
 
-        <Button Text="Handler Entry4"
+		<Button Text="Handler Entry4"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView4}"/>
 
-        <Button Text="Auto Update" 
+		<Button Text="Keyboard Extensions"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:KeyboardExtensionsPage}"/>
+		
+		<Button Text="Auto Update" 
 				x:Name="AutoUpdateButton" 
 				Clicked="AutoUpdateButton_Clicked"/>
 
-        <Button Text="Translate" 
+		<Button Text="Translate" 
 				x:Name="Translate" 
 				Clicked="Translate_Clicked"/>
 
-        <Button Text="ViewModelCallView"
-                x:Name="ViewModelCallView"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type vw:ViewModelCallView}"/>
-       
-        <Label x:Name="LabelVerison"/>
+		<Button Text="ViewModelCallView"
+				x:Name="ViewModelCallView"
+				Command="{Binding NavigateCommand}"
+				CommandParameter="{x:Type vw:ViewModelCallView}"/>
+	   
+		<Label x:Name="LabelVerison"/>
 		
 	</StackLayout>
 </ContentPage>

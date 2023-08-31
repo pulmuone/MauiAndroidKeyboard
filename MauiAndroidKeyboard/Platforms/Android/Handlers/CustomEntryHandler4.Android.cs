@@ -116,7 +116,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             handler.PlatformView.RequestFocus();
 
             var inputMethodManager = MauiApplication.Current.GetSystemService(content.Context.InputMethodService) as view.InputMethods.InputMethodManager;
-            inputMethodManager.ShowSoftInput(handler.PlatformView, ShowFlags.Forced);
+            inputMethodManager.ShowSoftInput(handler.PlatformView, 0);
         }
 
         public static void MapHideKeyboardRequested(CustomEntryHandler4 handler, HandlerEntry4 entry, object? args)

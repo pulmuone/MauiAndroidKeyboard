@@ -19,12 +19,6 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
 
-        //AndroidX.AppCompat.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
-
-        //Microsoft.Maui.ApplicationModel.Platform.Init(this, savedInstanceState);
-
-        //this.Window.AddFlags(Android.Views.WindowManagerFlags.KeepScreenOn);
-
         if (Build.VERSION.SdkInt >= BuildVersionCodes.M && Build.VERSION.SdkInt < BuildVersionCodes.Tiramisu) //23이상부터
         {
             ActivityCompat.RequestPermissions(this, PERMISSIONS, 0);
