@@ -15,6 +15,8 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
     public class CustomEntryHandler4 : ViewHandler<HandlerEntry4, AppCompatEditText>
     {
+        Drawable? _clearButtonDrawable;
+
         public static PropertyMapper<HandlerEntry4, CustomEntryHandler4> PropertyMapper = new PropertyMapper<HandlerEntry4, CustomEntryHandler4>(ViewHandler.ViewMapper)
         {
             [nameof(HandlerEntry4.Text)] = MapText
@@ -68,13 +70,20 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             }
 
             platformView.EditorAction += PlatformView_EditorAction;
-            
+
             //platformView.UpdateClearButtonVisibility(this.VirtualView, GetClearButtonDrawable());
         }
 
-        Drawable? _clearButtonDrawable;
-        protected Drawable GetClearButtonDrawable() =>
-            _clearButtonDrawable ??= ContextCompat.GetDrawable(Context, Resource.Drawable.abc_ic_clear_material);
+        private void OnFocusedChange(object sender, view.View.FocusChangeEventArgs e)
+        {
+            if (VirtualView == null)
+            {
+                return;
+            }
+        }
+
+        protected virtual Drawable? GetClearButtonDrawable() =>
+             _clearButtonDrawable ??= ContextCompat.GetDrawable(Context, Resource.Drawable.abc_ic_clear_material);
 
         private void PlatformView_EditorAction(object sender, TextView.EditorActionEventArgs e)
         {

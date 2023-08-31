@@ -57,7 +57,6 @@
 		<Grid Grid.Row="2" Grid.Column="1" >
 			<controls:HandlerEntry2 x:Name="PasswordEntry"
 									Text="{Binding Password}"
-									IsReadOnly="True"
 									IsSpellCheckEnabled="False"
 									IsTextPredictionEnabled="false" 
 									ShowVirtualKeyboardOnFocus="False"
