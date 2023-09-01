@@ -8,66 +8,65 @@
 			 Title="HandlerEntryView2"
 			 x:Name="_page">
 
-	<ContentPage.BindingContext>
-		<vm:HandlerEntryViewModel2 x:Name="vm"/>
-	</ContentPage.BindingContext>
+    <ContentPage.BindingContext>
+        <vm:HandlerEntryViewModel2 x:Name="vm"/>
+    </ContentPage.BindingContext>
 
-
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Order="Primary" 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" 
 					 Priority="1" 
 					 Text="SoftKeyboard"
 					 Clicked="ToolbarItemKeyboard_Clicked"/>
-	</ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>
 
-
-	<Grid RowDefinitions="100, 40, 40, 40, 40"
+    <Grid RowDefinitions="100, 40, 40, 40, 40"
 		  ColumnDefinitions="120, *"
 		  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
 
-		<Grid Grid.Row="0" Grid.ColumnSpan="2">
-			<Label 
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Label 
 			Text="EntryHandler"
 			VerticalOptions="Center" 
 			HorizontalOptions="Center" />
-		</Grid>
+        </Grid>
 
-		<Grid Grid.Row="1" Grid.Column="0">
-			<Label Text="User ID" VerticalTextAlignment="Center" />
-		</Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Label Text="User ID" VerticalTextAlignment="Center" />
+        </Grid>
 
-		<Grid Grid.Row="1" Grid.Column="1">
-			<controls:HandlerEntry2 x:Name="UserIDEntry"
-									 Text="{Binding UserID}"
-									 IsSpellCheckEnabled="False"
-									 IsTextPredictionEnabled="false" 
-									 ShowVirtualKeyboardOnFocus="False"
-									 ClearButtonVisibility="WhileEditing"
-									 Focused="UserIDEntry_Focused"
-									 Unfocused="UserIDEntry_Unfocused"
-									 ReturnCommand="{Binding UserIDCompletedCommand}"
-									 ReturnCommandParameter="{x:Reference Name=_page}">
-			</controls:HandlerEntry2>
-		</Grid>
-
-		<Grid Grid.Row="2" Grid.Column="0">
-			<Label Text="Password" VerticalTextAlignment="Center" />
-		</Grid>
-
-		<Grid Grid.Row="2" Grid.Column="1" >
-			<controls:HandlerEntry2 x:Name="PasswordEntry"
-									Text="{Binding Password}"
+        <Grid Grid.Row="1" Grid.Column="1">
+            <controls:HandlerEntry2 x:Name="UserIDEntry"
+									Text="{Binding UserID}"
+									IsEnabled="{Binding IsControlEnable}"
 									IsSpellCheckEnabled="False"
 									IsTextPredictionEnabled="false" 
 									ShowVirtualKeyboardOnFocus="False"
 									ClearButtonVisibility="WhileEditing"
+									Focused="UserIDEntry_Focused"
+									Unfocused="UserIDEntry_Unfocused"
+									ReturnCommand="{Binding UserIDCompletedCommand}"
+									ReturnCommandParameter="{x:Reference Name=_page}">
+            </controls:HandlerEntry2>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Label Text="Password" VerticalTextAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" >
+            <controls:HandlerEntry2 x:Name="PasswordEntry"
+									Text="{Binding Password}"
+									IsEnabled="{Binding IsControlEnable}"
+									IsSpellCheckEnabled="False"
+									IsTextPredictionEnabled="false" 
+									ShowVirtualKeyboardOnFocus="False"
+									ClearButtonVisibility="WhileEditing"                                    
 									Keyboard="Numeric"
 									Focused="PasswordEntry_Focused"
 									Unfocused="PasswordEntry_Unfocused"
 									ReturnCommand="{Binding PasswordCompletedCommand}"
 									ReturnCommandParameter="{x:Reference Name=_page}">
-			</controls:HandlerEntry2>
-		</Grid>
-	</Grid>
-
+            </controls:HandlerEntry2>
+        </Grid>
+    </Grid>
 </ContentPage>

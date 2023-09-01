@@ -1,42 +1,45 @@
 using CommunityToolkit.Maui.Core.Platform;
 using MauiAndroidKeyboard.Controls;
-using MauiAndroidKeyboard.Interfaces;
-using System.Diagnostics;
 
 namespace MauiAndroidKeyboard.Views;
 
 public partial class HandlerEntryView2 : ContentPage
 {
-    private HandlerEntry2 _currententry;
+    private HandlerEntry2 _currentEntry;
 
     public HandlerEntryView2()
     {
         InitializeComponent();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+    }
+
     private void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
     {
-        if (_currententry != null)
+        if (this._currentEntry != null)
         {
-            if (_currententry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftKeyboardShowing())
             {
-                _currententry.HideKeyboard();
+                this._currentEntry.HideKeyboard();
             }
             else
             {
-                _currententry.ShowKeyboard();
+                this._currentEntry.ShowKeyboard();
             }
         }
     }
 
     private void UserIDEntry_Focused(object sender, FocusEventArgs e)
     {
-        _currententry = sender as HandlerEntry2;
+        this._currentEntry = sender as HandlerEntry2;
     }
 
     private void PasswordEntry_Focused(object sender, FocusEventArgs e)
     {
-        _currententry = sender as HandlerEntry2;
+        this._currentEntry = sender as HandlerEntry2;
     }
 
     private void OnContentPageUnloaded(object sender, EventArgs e)
@@ -47,24 +50,23 @@ public partial class HandlerEntryView2 : ContentPage
 
     private void UserIDEntry_Unfocused(object sender, FocusEventArgs e)
     {
-        if (_currententry != null)
+        if (this._currentEntry != null)
         {
-            if (this._currententry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftKeyboardShowing())
             {
-                _currententry?.ClearFocus();
+                this._currentEntry?.ClearFocus();
             }
         }
     }
 
     private void PasswordEntry_Unfocused(object sender, FocusEventArgs e)
     {
-        if (_currententry != null)
+        if (this._currentEntry != null)
         {
-            if (this._currententry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftKeyboardShowing())
             {
-                _currententry?.ClearFocus();
+                this._currentEntry?.ClearFocus();
             }
         }
-
     }
 }

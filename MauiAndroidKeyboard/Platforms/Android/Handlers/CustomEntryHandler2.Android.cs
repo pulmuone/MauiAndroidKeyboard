@@ -3,36 +3,40 @@ using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidX.AppCompat.Widget;
-using AndroidX.Core.View;
 using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
+using System.Diagnostics;
 using AView = Android.Views.View;
 
 namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
     public class CustomEntryHandler2 : EntryHandler
     {
-        public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new PropertyMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewMapper)
+        public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new(ViewMapper)
         {
             [nameof(HandlerEntry2.Background)] = MapBackground,
-            [nameof(HandlerEntry2.IsReadOnly)] = MapIsReadOnly,
-            [nameof(HandlerEntry2.Keyboard)] = MapKeyboard,
+            [nameof(HandlerEntry2.CharacterSpacing)] = MapCharacterSpacing,
             [nameof(HandlerEntry2.ClearButtonVisibility)] = MapClearButtonVisibility,
             [nameof(HandlerEntry2.CursorPosition)] = MapCursorPosition,
+            [nameof(HandlerEntry2.FontFamily)] = MapFont,
             [nameof(HandlerEntry2.HorizontalTextAlignment)] = MapHorizontalTextAlignment,
             [nameof(HandlerEntry2.IsPassword)] = MapIsPassword,
+            [nameof(HandlerEntry2.IsReadOnly)] = MapIsReadOnly,
             [nameof(HandlerEntry2.IsTextPredictionEnabled)] = MapIsTextPredictionEnabled,
+            [nameof(HandlerEntry2.Keyboard)] = MapKeyboard,
             [nameof(HandlerEntry2.MaxLength)] = MapMaxLength,
             [nameof(HandlerEntry2.Placeholder)] = MapPlaceholder,
+            [nameof(HandlerEntry2.PlaceholderColor)] = MapPlaceholderColor,
             [nameof(HandlerEntry2.ReturnType)] = MapReturnType,
             [nameof(HandlerEntry2.SelectionLength)] = MapSelectionLength,
             [nameof(HandlerEntry2.Text)] = MapText,
+            [nameof(HandlerEntry2.TextColor)] = MapTextColor,
             [nameof(HandlerEntry2.VerticalTextAlignment)] = MapVerticalTextAlignment
         };
 
         //EntryHandler에 CommandMapper 만들어져 있어서 new
-        public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new CommandMapper<HandlerEntry2, CustomEntryHandler2>(ViewHandler.ViewCommandMapper)
+        public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new(ViewCommandMapper)
         {
             [nameof(HandlerEntry2.ShowKeyboardRequested)] = MapShowKeyboardRequested,
             [nameof(HandlerEntry2.HideKeyboardRequested)] = MapHideKeyboardRequested,
@@ -41,13 +45,15 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         //자동으로 생성되는 생성자이나 파라미터 없는 생성자 필요
         //iOS에서 발생하면 적용
-        public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
-        {
-        }
+        //public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
+        //{
+        //    Debug.WriteLine("test");
+        //}
 
         //이거 없으면 PropertyMapper, CommandMapper 작동 안함.
         public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)
         {
+            Debug.WriteLine("test");
         }
 
         //#2

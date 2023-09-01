@@ -3,14 +3,14 @@
     public class HandlerEntry2 : Entry
     {
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
-            = BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(HandlerEntry2), true);
+            = BindableProperty.Create(nameof(ShowVirtualKeyboardOnFocus), typeof(bool), typeof(HandlerEntry2), true);
 
         public bool ShowVirtualKeyboardOnFocus
         {
             get => (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty);
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
-        
+
         #region Events
         public event EventHandler ShowKeyboardRequested;
         public event EventHandler HideKeyboardRequested;

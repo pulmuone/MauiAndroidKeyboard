@@ -22,10 +22,9 @@ namespace MauiAndroidKeyboard.ViewModels
             (UserIDCompletedCommand as Command).ChangeCanExecute();
 
             HandlerEntry2 entry = ((HandlerEntry2)((ContentPage)obj).FindByName("PasswordEntry"));
-            entry.IsEnabled = false;
-            entry.IsEnabled = true;
-            entry.CursorPosition = 0;
-            entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
+            entry.IsEnabled = true; //Focus하기 전에 IsEnabled = true로 설정해야 한다.
+            //entry.CursorPosition = 0;
+            //entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
             entry.Focus();
 
             //ToDo
@@ -45,7 +44,7 @@ namespace MauiAndroidKeyboard.ViewModels
             //ToDo
             //로그인 작업 진행
             HandlerEntry2 entry = ((HandlerEntry2)((ContentPage)obj).FindByName("UserIDEntry"));
-            //entry.IsEnabled = true;
+            entry.IsEnabled = true;
             entry.Focus();
 
             IsControlEnable = true;
