@@ -19,11 +19,11 @@
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:RendererEntryView}"/>
 		
-		<Button Text="Handler Entry2"
+		<Button Text="Handler Entry2(Used)"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView2}"/>
 
-		<Button Text="Handler Entry4"
+        <Button Text="Handler Entry4(Not used)"
 				Command="{Binding NavigateCommand}"
 				CommandParameter="{x:Type vw:HandlerEntryView4}"/>
 
