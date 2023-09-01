@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * VirtualView : Maui쪽 컨트롤의 property에 접근
+ * PlatformView : native view 접근
+ */
 namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 {
     public class AutoUpdatePageHandler : PageHandler
@@ -28,38 +32,46 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         protected override void ConnectHandler(ContentViewGroup platformView)
         {
             base.ConnectHandler(PlatformView);
+
+            var activity = this.Context;
+            var intent = new Intent(activity, typeof(AutoUpdateActivity));
+
+            AutoUpdateActivity.OnUpdateCompleted += () =>
+            {
+                (VirtualView as ContentPage).Navigation.PopAsync();
+            };
+
+            activity.StartActivity(intent);
         }
 
         //#3
         protected override void DisconnectHandler(ContentViewGroup platformView)
         {
-            platformView.Dispose();
-
             base.DisconnectHandler(platformView);
+            platformView.Dispose();
         }
 
-        public override void SetVirtualView(IView view)
-        {
-            base.SetVirtualView(view);
+        //public override void SetVirtualView(IView view)
+        //{
+        //    base.SetVirtualView(view);
 
-            var activity = this.Context;
-            var intent = new Intent(activity, typeof(AutoUpdateActivity));
+        //    var activity = this.Context;
+        //    var intent = new Intent(activity, typeof(AutoUpdateActivity));
 
-            try
-            {
-                AutoUpdateActivity.OnUpdateCompleted += () =>
-                {
-                    (view as ContentPage).Navigation.PopAsync();
-                };
+        //    try
+        //    {
+        //        AutoUpdateActivity.OnUpdateCompleted += () =>
+        //        {
+        //            (view as ContentPage).Navigation.PopAsync();
+        //        };
 
-                activity.StartActivity(intent);
+        //        activity.StartActivity(intent);
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //}
     }
 }
