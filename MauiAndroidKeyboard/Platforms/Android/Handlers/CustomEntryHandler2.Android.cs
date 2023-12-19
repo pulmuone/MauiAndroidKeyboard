@@ -86,20 +86,28 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             var actionId = e.ActionId;
             var evt = e.Event;
 
-            if (returnType != null)
-            {
-                var currentInputImeFlag = returnType.Value.ToPlatform();
+            if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+                return; //Already handled by base class.
 
-                if (actionId == ImeAction.Done ||
-                    actionId == currentInputImeFlag ||
-                    (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
-                {
-                    VirtualView?.Completed();
-                    //(VirtualView as Entry).SendCompleted();
-                }
-            }
+            if (actionId != ImeAction.ImeNull)
+                VirtualView?.Completed();
 
             e.Handled = true;
+
+            //if (returnType != null)
+            //{
+            //    var currentInputImeFlag = returnType.Value.ToPlatform();
+
+            //    if (actionId == ImeAction.Done ||
+            //        actionId == currentInputImeFlag ||
+            //        (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+            //    {
+            //        VirtualView?.Completed();
+            //        //(VirtualView as Entry).SendCompleted();
+            //    }
+            //}
+
+            //e.Handled = true;
         }
 
         protected override void DisconnectHandler(AppCompatEditText platformView)

@@ -91,11 +91,19 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             var evt = e.Event;
 
             if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
-            {
+                return; //Already handled by base class.
+
+            if (actionId != ImeAction.ImeNull)
                 (VirtualView as Entry).SendCompleted();
-            }
 
             e.Handled = true;
+
+            //if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+            //{
+            //    (VirtualView as Entry).SendCompleted();
+            //}
+
+            //e.Handled = true;
         }
 
 
