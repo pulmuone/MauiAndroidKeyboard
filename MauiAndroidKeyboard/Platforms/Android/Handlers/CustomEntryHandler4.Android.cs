@@ -54,11 +54,11 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
             // Perform any control setup here
             //platformView.SetPadding(0, 0, 0, 0); //모양 이상해짐.
-            platformView.SetTextIsSelectable(true);
+            //platformView.SetTextIsSelectable(true);
+            //platformView.SetSingleLine(true);
+
             platformView.SetSelectAllOnFocus(true);
-            //platformView.SetTextSize(ComplexUnitType.Sp, 14);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
-            platformView.SetSingleLine(true);
 
             if (VirtualView.Keyboard == Keyboard.Numeric)
             {

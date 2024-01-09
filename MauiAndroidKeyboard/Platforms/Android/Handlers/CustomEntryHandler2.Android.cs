@@ -71,10 +71,11 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         {
             base.ConnectHandler(PlatformView);
 
-            platformView.SetTextIsSelectable(true);
+            //platformView.SetTextIsSelectable(true); //초기화 안됨.
+            //platformView.SetSingleLine(true); //초기화 안됨.
+
             platformView.SetSelectAllOnFocus(true);
             platformView.ShowSoftInputOnFocus = false; //true: Show Keyboard, false: Hide Keyboard
-            platformView.SetSingleLine(true);
 
             platformView.EditorAction += PlatformView_EditorAction;
         }
@@ -92,7 +93,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             if (actionId != ImeAction.ImeNull)
                 VirtualView?.Completed();
 
-            e.Handled = true;
+            e.Handled = true; //Event Cancel
 
             //if (returnType != null)
             //{
