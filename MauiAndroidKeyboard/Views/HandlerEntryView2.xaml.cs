@@ -21,7 +21,7 @@ public partial class HandlerEntryView2 : ContentPage
     {
         if (this._currentEntry != null)
         {
-            if (this._currentEntry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftInputShowing())
             {
                 this._currentEntry.HideKeyboard();
             }
@@ -52,7 +52,7 @@ public partial class HandlerEntryView2 : ContentPage
     {
         if (this._currentEntry != null)
         {
-            if (this._currentEntry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftInputShowing())
             {
                 this._currentEntry?.ClearFocus();
             }
@@ -63,7 +63,7 @@ public partial class HandlerEntryView2 : ContentPage
     {
         if (this._currentEntry != null)
         {
-            if (this._currentEntry.IsSoftKeyboardShowing())
+            if (this._currentEntry.IsSoftInputShowing())
             {
                 this._currentEntry?.ClearFocus();
             }
