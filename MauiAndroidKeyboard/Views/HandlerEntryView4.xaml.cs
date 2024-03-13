@@ -1,4 +1,3 @@
-using CommunityToolkit.Maui.Core.Platform;
 using MauiAndroidKeyboard.Controls;
 
 namespace MauiAndroidKeyboard.Views;
@@ -31,7 +30,7 @@ public partial class HandlerEntryView4 : ContentPage
     {
         if (_currententry != null)
         {
-            if (this._currententry.IsSoftKeyboardShowing())
+            if (this._currententry.IsSoftInputShowing())
             {
                 _currententry?.HideKeyboard();
             }
@@ -46,7 +45,7 @@ public partial class HandlerEntryView4 : ContentPage
     {
         if (_currententry != null)
         {
-            if (this._currententry.IsSoftKeyboardShowing())
+            if (this._currententry.IsSoftInputShowing())
             {
                 _currententry?.ClearFocus();
             }
@@ -57,7 +56,7 @@ public partial class HandlerEntryView4 : ContentPage
     {
         if (_currententry != null)
         {
-            if (this._currententry.IsSoftKeyboardShowing())
+            if (this._currententry.IsSoftInputShowing())
             {
                 _currententry?.ClearFocus();
             }

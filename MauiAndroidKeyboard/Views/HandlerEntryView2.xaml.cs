@@ -1,4 +1,3 @@
-using CommunityToolkit.Maui.Core.Platform;
 using MauiAndroidKeyboard.Controls;
 
 namespace MauiAndroidKeyboard.Views;

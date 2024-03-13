@@ -84,16 +84,23 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         {
             var returnType = VirtualView?.ReturnType;
 
-            var actionId = e.ActionId;
-            var evt = e.Event;
+            if (returnType != null)
+            {
+                var actionId = e.ActionId;
+                var evt = e.Event;
 
-            if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
-                return; //Already handled by base class.
+                if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+                {
+                    return; //Already handled by base class.
+                }
 
-            if (actionId != ImeAction.ImeNull)
-                VirtualView?.Completed();
+                if (actionId != ImeAction.ImeNull)
+                {
+                    VirtualView?.Completed();
+                }
+            }
 
-            e.Handled = true; //Event Cancel
+            e.Handled = true; //이벤트 취소
 
             //if (returnType != null)
             //{
@@ -113,9 +120,16 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         protected override void DisconnectHandler(AppCompatEditText platformView)
         {
-            base.DisconnectHandler(platformView);
-            platformView.EditorAction -= PlatformView_EditorAction;
-            platformView.Dispose();
+            try
+            {
+                base.DisconnectHandler(platformView);
+                platformView.EditorAction -= PlatformView_EditorAction;
+                platformView.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public static void MapShowKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
@@ -124,9 +138,6 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
             var inputMethodManager = (InputMethodManager?)handler.Context?.GetSystemService(Context.InputMethodService);
             inputMethodManager.ShowSoftInput(handler.PlatformView, 0);
-
-            //var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(content.Context.InputMethodService);
-            //inputMethodManager.ShowSoftInput(handler.PlatformView, 0);
         }
 
         public static void MapHideKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
@@ -143,9 +154,6 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             {
                 inputMethodManager.HideSoftInputFromWindow(windowToken, HideSoftInputFlags.None);
             }
-
-            //var inputMethodManager = (view.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Context.InputMethodService);
-            //inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
         }
 
         //키보드가 열려 있는 상태에서 이전화면으로 넘어 갈 때 SoftKeyboard를 Hidden시켜야 한다.
@@ -164,9 +172,6 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             {
                 inputMethodManager.HideSoftInputFromWindow(windowToken, HideSoftInputFlags.None);
             }
-
-            //var inputMethodManager = (InputMethodManager?)MauiApplication.Current.GetSystemService(Context.InputMethodService);
-            //inputMethodManager.HideSoftInputFromWindow(handler.PlatformView.WindowToken, HideSoftInputFlags.None);
         }
     }
 }
