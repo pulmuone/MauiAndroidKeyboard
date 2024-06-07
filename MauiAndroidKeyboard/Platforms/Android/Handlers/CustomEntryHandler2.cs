@@ -45,10 +45,10 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         //자동으로 생성되는 생성자이나 파라미터 없는 생성자 필요
         //iOS에서 발생하면 적용
-        //public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
-        //{
-        //    Debug.WriteLine("test");
-        //}
+        public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
+        {
+            Debug.WriteLine("test");
+        }
 
         //이거 없으면 PropertyMapper, CommandMapper 작동 안함.
         public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)

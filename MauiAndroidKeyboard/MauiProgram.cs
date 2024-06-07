@@ -34,9 +34,9 @@ public static class MauiProgram
 #endif
 
 #if IOS
-
+			handlers.AddHandler(typeof(HandlerEntry2), typeof(MauiAndroidKeyboard.Platforms.iOS.Handlers.CustomEntryHandler2));
 #endif
-			});
+            });
 
 		return builder.Build();
 	}
