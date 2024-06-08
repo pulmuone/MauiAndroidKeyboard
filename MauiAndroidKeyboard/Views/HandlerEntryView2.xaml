@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="MauiAndroidKeyboard.Views.HandlerEntryView2"
@@ -19,9 +19,9 @@
 					 Clicked="ToolbarItemKeyboard_Clicked"/>
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="100, 40, 40, 40, 40"
+    <Grid RowDefinitions="100, 50, 50, 50, 50"
 		  ColumnDefinitions="120, *"
-		  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
+		  RowSpacing="0" ColumnSpacing="0" Padding="0,10,0,0" Margin="0,10,0,0">
 
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Label 
@@ -37,9 +37,6 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <controls:HandlerEntry2 x:Name="UserIDEntry"
 									Text="{Binding UserID}"
-									IsEnabled="{Binding IsControlEnable}"
-									IsSpellCheckEnabled="False"
-									IsTextPredictionEnabled="false" 
 									ShowVirtualKeyboardOnFocus="False"
 									ClearButtonVisibility="WhileEditing"
 									Focused="UserIDEntry_Focused"
@@ -56,9 +53,6 @@
         <Grid Grid.Row="2" Grid.Column="1" >
             <controls:HandlerEntry2 x:Name="PasswordEntry"
 									Text="{Binding Password}"
-									IsEnabled="{Binding IsControlEnable}"
-									IsSpellCheckEnabled="False"
-									IsTextPredictionEnabled="false" 
 									ShowVirtualKeyboardOnFocus="False"
 									ClearButtonVisibility="WhileEditing"                                    
 									Keyboard="Numeric"
@@ -68,5 +62,16 @@
 									ReturnCommandParameter="{x:Reference Name=_page}">
             </controls:HandlerEntry2>
         </Grid>
+
+		<Grid Grid.Row="3" Grid.Column="1">
+			<Button x:Name="BtnShow" Text="Show" Clicked="BtnShow_Clicked"></Button>
+
+		</Grid>
+
+		<Grid Grid.Row="4" Grid.Column="1">
+			<Button x:Name="BtnHidden" Text="Hidden" Clicked="BtnHidden_Clicked"/>
+
+
+		</Grid>
     </Grid>
 </ContentPage>

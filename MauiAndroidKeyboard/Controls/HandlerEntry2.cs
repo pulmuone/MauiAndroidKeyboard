@@ -20,8 +20,8 @@
 
         public HandlerEntry2()
         {
-            this.Focused += OnFocused;
-            this.Unfocused -= OnFocused;
+            //this.Focused += OnFocused;
+            //this.Unfocused -= OnFocused;
         }
 
         private void OnFocused(object sender, FocusEventArgs e)
@@ -53,16 +53,19 @@
             return true;
         }
 
-        public void ShowKeyboard()
+        public async void ShowKeyboard()
         {
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
             Handler?.Invoke(nameof(HandlerEntry2.ShowKeyboardRequested));
+            //await this.ShowSoftInputAsync(CancellationToken.None);
         }
 
-        public void HideKeyboard()
+        public async void HideKeyboard()
         {
             //Handler는 ViewHandler로 핸들러를 구현한 경우만 호출된다.
             Handler?.Invoke(nameof(HandlerEntry2.HideKeyboardRequested));
+
+            //await this.HideSoftInputAsync(CancellationToken.None);
         }
 
         public void ClearFocus()

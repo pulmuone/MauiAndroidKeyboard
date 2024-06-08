@@ -14,7 +14,7 @@
 		<ApplicationTitle>MauiAndroidKeyboard</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.gwise.maui</ApplicationId>
+		<ApplicationId>com.gwise.test</ApplicationId>
 		<ApplicationIdGuid>a13fb0bc-0ad9-4220-ba3e-af1f282b7341</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -60,6 +60,14 @@
 	  <EnableLLVM>True</EnableLLVM>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <CodesignProvision>Automatic</CodesignProvision>
+	  <CodesignKey>iPhone Developer</CodesignKey>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />

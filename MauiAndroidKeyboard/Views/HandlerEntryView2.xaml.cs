@@ -1,4 +1,5 @@
 using MauiAndroidKeyboard.Controls;
+using Microsoft.Maui;
 
 namespace MauiAndroidKeyboard.Views;
 
@@ -11,12 +12,16 @@ public partial class HandlerEntryView2 : ContentPage
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        await Task.Delay(300);
+
+        UserIDEntry.Focus();
     }
 
-    private void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
+    private async void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
     {
         if (this._currentEntry != null)
         {
@@ -67,5 +72,15 @@ public partial class HandlerEntryView2 : ContentPage
                 this._currentEntry?.ClearFocus();
             }
         }
+    }
+
+    void BtnShow_Clicked(System.Object sender, System.EventArgs e)
+    {
+        this._currentEntry.ShowKeyboard();
+    }
+
+    void BtnHidden_Clicked(System.Object sender, System.EventArgs e)
+    {
+        this._currentEntry.HideKeyboard();
     }
 }

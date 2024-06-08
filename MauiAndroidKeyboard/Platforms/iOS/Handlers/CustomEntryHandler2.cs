@@ -3,6 +3,7 @@ using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,25 +15,26 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
     {
         public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new(ViewMapper)
         {
-            [nameof(ExtendedEntry.Background)] = MapBackground,
-            [nameof(ExtendedEntry.CharacterSpacing)] = MapCharacterSpacing,
-            [nameof(ExtendedEntry.ClearButtonVisibility)] = MapClearButtonVisibility,
-            [nameof(ExtendedEntry.CursorPosition)] = MapCursorPosition,
-            [nameof(ExtendedEntry.FontFamily)] = MapFont,
-            [nameof(ExtendedEntry.HorizontalTextAlignment)] = MapHorizontalTextAlignment,
-            [nameof(ExtendedEntry.IsPassword)] = MapIsPassword,
-            [nameof(ExtendedEntry.IsReadOnly)] = MapIsReadOnly,
-            [nameof(ExtendedEntry.IsTextPredictionEnabled)] = MapIsTextPredictionEnabled,
-            [nameof(ExtendedEntry.Keyboard)] = MapKeyboard,
-            [nameof(ExtendedEntry.MaxLength)] = MapMaxLength,
-            [nameof(ExtendedEntry.Placeholder)] = MapPlaceholder,
-            [nameof(ExtendedEntry.PlaceholderColor)] = MapPlaceholderColor,
-            [nameof(ExtendedEntry.ReturnType)] = MapReturnType,
-            [nameof(ExtendedEntry.SelectionLength)] = MapSelectionLength,
-            [nameof(ExtendedEntry.Text)] = MapText,
-            [nameof(ExtendedEntry.TextColor)] = MapTextColor,
-            [nameof(ExtendedEntry.VerticalTextAlignment)] = MapVerticalTextAlignment
+            [nameof(HandlerEntry2.Background)] = MapBackground,
+            [nameof(HandlerEntry2.CharacterSpacing)] = MapCharacterSpacing,
+            [nameof(HandlerEntry2.ClearButtonVisibility)] = MapClearButtonVisibility,
+            [nameof(HandlerEntry2.CursorPosition)] = MapCursorPosition,
+            [nameof(HandlerEntry2.FontFamily)] = MapFont,
+            [nameof(HandlerEntry2.HorizontalTextAlignment)] = MapHorizontalTextAlignment,
+            [nameof(HandlerEntry2.IsPassword)] = MapIsPassword,
+            [nameof(HandlerEntry2.IsReadOnly)] = MapIsReadOnly,
+            [nameof(HandlerEntry2.IsTextPredictionEnabled)] = MapIsTextPredictionEnabled,
+            [nameof(HandlerEntry2.Keyboard)] = MapKeyboard,
+            [nameof(HandlerEntry2.MaxLength)] = MapMaxLength,
+            [nameof(HandlerEntry2.Placeholder)] = MapPlaceholder,
+            [nameof(HandlerEntry2.PlaceholderColor)] = MapPlaceholderColor,
+            [nameof(HandlerEntry2.ReturnType)] = MapReturnType,
+            [nameof(HandlerEntry2.SelectionLength)] = MapSelectionLength,
+            [nameof(HandlerEntry2.Text)] = MapText,
+            [nameof(HandlerEntry2.TextColor)] = MapTextColor,
+            [nameof(HandlerEntry2.VerticalTextAlignment)] = MapVerticalTextAlignment
         };
+
 
         public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new(ViewCommandMapper)
         {
@@ -41,18 +43,18 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
             [nameof(HandlerEntry2.ClearFocusRequested)] = MapClearFocusRequested
         };
 
-        public CustomEntryHandler2()
+        public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)
         {
         }
 
-        public CustomEntryHandler2(IPropertyMapper mapper) : base(mapper)
-        {
-        }
+        //public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
+        //{
+        //    Debug.WriteLine("test");
+        //}
 
-        public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper) : base(mapper, commandMapper)
-        {
-        }
-
+        //public CustomEntryHandler2(IPropertyMapper mapper) : base(mapper)
+        //{
+        //}
 
 
         protected override MauiTextField CreatePlatformView() => new MauiTextField();
@@ -64,11 +66,28 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 
             // Perform any control setup here
 
-            platformView.ResignFirstResponder(); //HideKeyboard
+            platformView.InputView = new UIView();
+
+            PlatformView.Layer.BorderColor = UIKit.UIColor.Gray.CGColor;
+            PlatformView.BorderStyle = UIKit.UITextBorderStyle.RoundedRect;
+            //PlatformView.BackgroundColor = UIKit.UIColor.White;
+
+            //platformView.InputView.Hidden = false;
+            platformView.InputAssistantItem.LeadingBarButtonGroups = null;
+            platformView.InputAssistantItem.TrailingBarButtonGroups = null;
+
+            //platformView.EditingDidBegin += (s, e) =>
+            //{
+            //    platformView.PerformSelector(new ObjCRuntime.Selector("selectAll"), null, 0.0f);
+            //};
+
+            //platformView.BecomeFirstResponder(); //화면 뜨면 바로 포커스 잡힘
         }
 
         protected override void DisconnectHandler(MauiTextField platformView)
         {
+
+            //platformView.InputView.Hidden = true;
             platformView.Dispose();
             base.DisconnectHandler(platformView);
         }
@@ -76,22 +95,27 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         //Show Keyboard
         public static void MapShowKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
-            //ShowKeyboard
-            handler.PlatformView.BecomeFirstResponder(); 
+            handler.PlatformView.InputView = null;
+            handler.PlatformView.ResignFirstResponder();
+            handler.PlatformView.BecomeFirstResponder();
         }
 
         //Hide Keyboard
         public static void MapHideKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
-            //Hide
+
+            handler.PlatformView.InputView = new UIView();
+            handler.PlatformView.InputAssistantItem.LeadingBarButtonGroups = null;
+            handler.PlatformView.InputAssistantItem.TrailingBarButtonGroups = null;
             handler.PlatformView.ResignFirstResponder();
+            handler.PlatformView.BecomeFirstResponder();
         }
 
 
         //Clear Focus
         public static void MapClearFocusRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
-            handler.PlatformView.ResignFirstResponder();
+            handler.PlatformView.ResignFirstResponder(); //ㅍㅗㅋㅓㅅㅡ ㅇㅏㅇㅜㅅ
         }
     }
 }
