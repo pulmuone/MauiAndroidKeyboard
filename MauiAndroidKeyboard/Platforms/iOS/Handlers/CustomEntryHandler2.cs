@@ -57,7 +57,7 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         //}
 
 
-        protected override MauiTextField CreatePlatformView() => new MauiTextField();
+        //protected override MauiTextField CreatePlatformView() => new MauiTextField();
 
 
         protected override void ConnectHandler(MauiTextField platformView)
@@ -105,8 +105,8 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         {
 
             handler.PlatformView.InputView = new UIView();
-            handler.PlatformView.InputAssistantItem.LeadingBarButtonGroups = null;
-            handler.PlatformView.InputAssistantItem.TrailingBarButtonGroups = null;
+            //handler.PlatformView.InputAssistantItem.LeadingBarButtonGroups = null;
+            //handler.PlatformView.InputAssistantItem.TrailingBarButtonGroups = null;
             handler.PlatformView.ResignFirstResponder();
             handler.PlatformView.BecomeFirstResponder();
         }
