@@ -1,12 +1,6 @@
 ﻿using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UIKit;
 
 namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
@@ -47,17 +41,7 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         {
         }
 
-        //public CustomEntryHandler2(IPropertyMapper mapper, CommandMapper commandMapper = null) : base(mapper, commandMapper)
-        //{
-        //    Debug.WriteLine("test");
-        //}
-
-        //public CustomEntryHandler2(IPropertyMapper mapper) : base(mapper)
-        //{
-        //}
-
-
-        //protected override MauiTextField CreatePlatformView() => new MauiTextField();
+        protected override MauiTextField CreatePlatformView() => new MauiTextField();
 
 
         protected override void ConnectHandler(MauiTextField platformView)
@@ -115,7 +99,7 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         //Clear Focus
         public static void MapClearFocusRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
-            handler.PlatformView.ResignFirstResponder(); //ㅍㅗㅋㅓㅅㅡ ㅇㅏㅇㅜㅅ
+            handler.PlatformView.ResignFirstResponder(); //Focus Out
         }
     }
 }

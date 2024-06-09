@@ -1,30 +1,76 @@
-﻿using MauiAndroidKeyboard.Controls;
+﻿using Android.Content;
+using Android.Views.InputMethods;
+using Android.Views;
+using Android.Widget;
+using Google.Android.Material.TextField;
+using MauiAndroidKeyboard.Controls;
 using MauiAndroidKeyboard.Interfaces;
-using MauiAndroidKeyboard.Platforms.Android.Listeners;
 using app = Android.App;
 
 namespace MauiAndroidKeyboard.Platforms.Android.Services
 {
-    public class SoftwareKeyboardService : ISoftwareKeyboardService
+    public class SoftKeyboardService : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
     {
-        public virtual event EventHandler<SoftwareKeyboardEventArgs> KeyboardHeightChanged;
+        private static InputMethodManager _inputManager;
 
-        private readonly app.Activity activity;
-        private readonly GlobalLayoutListener globalLayoutListener;
+        private static bool _wasAcceptingText;
 
-        public bool IsKeyboardVisible => globalLayoutListener.IsKeyboardVisible;
-        
-        public SoftwareKeyboardService()
+        public void OnGlobalLayout()
         {
-            this.activity = Platform.CurrentActivity;
-            globalLayoutListener = new GlobalLayoutListener(this);
-            this.activity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(this.globalLayoutListener);
-        }
+            try
+            {
+                if (_inputManager is null || _inputManager.Handle == IntPtr.Zero)
+                {
+                    _inputManager = (InputMethodManager)Platform.CurrentActivity.GetSystemService(Context.InputMethodService);
+                }
 
-        internal void InvokeKeyboardHeightChanged(SoftwareKeyboardEventArgs args)
-        {
-            var handler = KeyboardHeightChanged;
-            handler?.Invoke(this, args);
+                // Set visibility to false when focus on background view.
+                var currentFocus = Platform.CurrentActivity.CurrentFocus;
+
+                if (currentFocus.AccessibilityClassName == "android.view.ViewGroup")
+                {
+                    SoftKeyboard.Current.InvokeVisibilityChanged(false);
+                    _wasAcceptingText = _inputManager.IsAcceptingText;
+                    return;
+                }
+
+                EditText editText;
+
+                if (currentFocus is TextInputLayout inputLayout)
+                {
+                    editText = inputLayout.EditText;
+                }
+                else if (currentFocus is EditText text)
+                {
+                    editText = text;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (!editText.ShowSoftInputOnFocus)
+                {
+                    _inputManager?.HideSoftInputFromWindow(currentFocus.WindowToken, HideSoftInputFlags.None);
+                }
+
+                if (_wasAcceptingText == _inputManager?.IsAcceptingText)
+                {
+                    // Fixed entry get focused by code pop up keyboard
+                    if (!editText.ShowSoftInputOnFocus)
+                    {
+                        SoftKeyboard.Current.InvokeVisibilityChanged(false);
+                    }
+                    return;
+                }
+
+                SoftKeyboard.Current.InvokeVisibilityChanged(_inputManager.IsAcceptingText);
+                _wasAcceptingText = _inputManager.IsAcceptingText;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
     }
 }

@@ -1,10 +1,12 @@
 using MauiAndroidKeyboard.Controls;
 using Microsoft.Maui;
+using System.Diagnostics;
 
 namespace MauiAndroidKeyboard.Views;
 
 public partial class HandlerEntryView2 : ContentPage
 {
+    bool IsSoftInputShowing;
     private HandlerEntry2 _currentEntry;
 
     public HandlerEntryView2()
@@ -19,13 +21,28 @@ public partial class HandlerEntryView2 : ContentPage
         await Task.Delay(300);
 
         UserIDEntry.Focus();
+
+        SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        SoftKeyboard.Current.VisibilityChanged -= Current_VisibilityChanged;
+    }
+
+    private void Current_VisibilityChanged(SoftKeyboardEventArgs e)
+    {
+        IsSoftInputShowing = e.IsVisible;
+        Debug.WriteLine($"KeyBoard is visible : {(e.IsVisible ? "Yes" : "No")}");
     }
 
     private async void ToolbarItemKeyboard_Clicked(object sender, EventArgs e)
     {
         if (this._currentEntry != null)
         {
-            if (this._currentEntry.IsSoftInputShowing())
+            if (this.IsSoftInputShowing)
             {
                 this._currentEntry.HideKeyboard();
             }
