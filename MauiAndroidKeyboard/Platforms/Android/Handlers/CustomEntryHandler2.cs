@@ -139,7 +139,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             var inputMethodManager = (InputMethodManager?)handler.Context?.GetSystemService(Context.InputMethodService);
             inputMethodManager.ShowSoftInput(handler.PlatformView, ShowFlags.Implicit);
 
-            SoftKeyboard.Current.InvokeVisibilityChanged(true);
+            //SoftKeyboard.Current.InvokeVisibilityChanged(true);
         }
 
         public static void MapHideKeyboardRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
@@ -157,7 +157,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
                 inputMethodManager.HideSoftInputFromWindow(windowToken, HideSoftInputFlags.None);
             }
 
-            SoftKeyboard.Current.InvokeVisibilityChanged(false);
+            //SoftKeyboard.Current.InvokeVisibilityChanged(false);
         }
 
         //키보드가 열려 있는 상태에서 이전화면으로 넘어 갈 때 SoftKeyboard를 Hidden시켜야 한다.
@@ -177,7 +177,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
                 inputMethodManager.HideSoftInputFromWindow(windowToken, HideSoftInputFlags.None);
             }
 
-            SoftKeyboard.Current.InvokeVisibilityChanged(false);
+            //SoftKeyboard.Current.InvokeVisibilityChanged(false);
         }
     }
 }

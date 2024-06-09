@@ -51,7 +51,8 @@ namespace MauiAndroidKeyboard.Platforms.Android.Services
 
                 if (!editText.ShowSoftInputOnFocus)
                 {
-                    _inputManager?.HideSoftInputFromWindow(currentFocus.WindowToken, HideSoftInputFlags.None);
+                    //Effect 사용할 경우는 주석 해제
+                    //_inputManager?.HideSoftInputFromWindow(currentFocus.WindowToken, HideSoftInputFlags.None);
                 }
 
                 if (_wasAcceptingText == _inputManager?.IsAcceptingText)
