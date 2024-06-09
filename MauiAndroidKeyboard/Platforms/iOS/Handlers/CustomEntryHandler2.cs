@@ -43,6 +43,11 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 
         protected override MauiTextField CreatePlatformView() => new MauiTextField();
 
+        public override void SetVirtualView(IView view)
+        {
+            base.SetVirtualView(view);
+        }
+
 
         protected override void ConnectHandler(MauiTextField platformView)
         {
@@ -52,8 +57,11 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 
             platformView.InputView = new UIView();
 
-            PlatformView.Layer.BorderColor = UIKit.UIColor.Gray.CGColor;
-            PlatformView.BorderStyle = UIKit.UITextBorderStyle.RoundedRect;
+            //https://blog.stackademic.com/mastering-net-maui-a-deep-dive-into-handlers-1205cd34f270
+            PlatformView.Layer.BorderColor = UIKit.UIColor.Gray.CGColor; // UIColor.Clear.CGColor;
+            PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+            PlatformView.ClipsToBounds = true;
+            PlatformView.Layer.BorderWidth = 0;
             //PlatformView.BackgroundColor = UIKit.UIColor.White;
 
             //platformView.InputView.Hidden = false;
@@ -82,6 +90,8 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
             handler.PlatformView.InputView = null;
             handler.PlatformView.ResignFirstResponder();
             handler.PlatformView.BecomeFirstResponder();
+
+            SoftKeyboard.Current.InvokeVisibilityChanged(true);
         }
 
         //Hide Keyboard
@@ -93,6 +103,8 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
             //handler.PlatformView.InputAssistantItem.TrailingBarButtonGroups = null;
             handler.PlatformView.ResignFirstResponder();
             handler.PlatformView.BecomeFirstResponder();
+
+            SoftKeyboard.Current.InvokeVisibilityChanged(false);
         }
 
 
@@ -100,6 +112,7 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
         public static void MapClearFocusRequested(CustomEntryHandler2 handler, HandlerEntry2 entry, object? args)
         {
             handler.PlatformView.ResignFirstResponder(); //Focus Out
+            SoftKeyboard.Current.InvokeVisibilityChanged(false);
         }
     }
 }

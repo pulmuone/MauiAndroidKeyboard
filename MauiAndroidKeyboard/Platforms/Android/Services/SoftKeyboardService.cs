@@ -30,6 +30,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Services
                 if (currentFocus.AccessibilityClassName == "android.view.ViewGroup")
                 {
                     SoftKeyboard.Current.InvokeVisibilityChanged(false);
+
                     _wasAcceptingText = _inputManager.IsAcceptingText;
                     return;
                 }
@@ -60,7 +61,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Services
                     // Fixed entry get focused by code pop up keyboard
                     if (!editText.ShowSoftInputOnFocus)
                     {
-                        SoftKeyboard.Current.InvokeVisibilityChanged(false);
+                        //SoftKeyboard.Current.InvokeVisibilityChanged(false);
                     }
                     return;
                 }

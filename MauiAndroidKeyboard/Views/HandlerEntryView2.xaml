@@ -5,6 +5,10 @@
 			 xmlns:vm="clr-namespace:MauiAndroidKeyboard.ViewModels"
 			 xmlns:controls="clr-namespace:MauiAndroidKeyboard.Controls"
 			 Unloaded="OnContentPageUnloaded"
+             Loaded="_page_Loaded"
+             NavigatedTo="_page_NavigatedTo"
+             NavigatedFrom="_page_NavigatedFrom"
+             NavigatingFrom="_page_NavigatingFrom"
 			 Title="HandlerEntryView2"
 			 x:Name="_page">
 

@@ -100,4 +100,24 @@ public partial class HandlerEntryView2 : ContentPage
     {
         this._currentEntry.HideKeyboard();
     }
+
+    private void _page_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        Debug.WriteLine("_page_NavigatedTo");
+    }
+
+    private void _page_NavigatedFrom(object sender, NavigatedFromEventArgs e)
+    {
+        Debug.WriteLine("_page_NavigatedFrom");
+    }
+
+    private void _page_NavigatingFrom(object sender, NavigatingFromEventArgs e)
+    {
+        Debug.WriteLine("_page_NavigatingFrom");
+    }
+
+    private void _page_Loaded(object sender, EventArgs e)
+    {
+        Debug.WriteLine("_page_Loaded");
+    }
 }

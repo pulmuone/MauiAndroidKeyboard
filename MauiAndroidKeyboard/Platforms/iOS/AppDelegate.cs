@@ -10,8 +10,8 @@ public class AppDelegate : MauiUIApplicationDelegate
 
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
     {
-        UIKeyboard.Notifications.ObserveDidShow(OnKeyboardDidShow);
-        UIKeyboard.Notifications.ObserveDidHide(OnKeyboardDidHide);
+        //UIKeyboard.Notifications.ObserveDidShow(OnKeyboardDidShow);
+        //UIKeyboard.Notifications.ObserveDidHide(OnKeyboardDidHide);
 
         return base.FinishedLaunching(app, options);
     }

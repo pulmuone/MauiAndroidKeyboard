@@ -20,8 +20,8 @@
 
         public HandlerEntry2()
         {
-            //this.Focused += OnFocused;
-            //this.Unfocused -= OnFocused;
+            this.Focused += OnFocused;
+            this.Unfocused -= OnFocused;
         }
 
         private void OnFocused(object sender, FocusEventArgs e)

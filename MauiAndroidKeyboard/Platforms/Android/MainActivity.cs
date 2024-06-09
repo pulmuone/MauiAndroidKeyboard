@@ -20,7 +20,7 @@ public class MainActivity : MauiAppCompatActivity
         base.OnCreate(savedInstanceState);
         Platform.Init(this, savedInstanceState);
 
-        Platform.CurrentActivity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(new MauiAndroidKeyboard.Platforms.Android.Services.SoftKeyboardService());
+        //Platform.CurrentActivity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(new MauiAndroidKeyboard.Platforms.Android.Services.SoftKeyboardService());
 
         if (Build.VERSION.SdkInt >= BuildVersionCodes.M && Build.VERSION.SdkInt < BuildVersionCodes.Tiramisu) //23이상부터
         {
