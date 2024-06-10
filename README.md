@@ -12,6 +12,7 @@ iOS의 Handler도 개발 소스 추가.
 \iOS\Handlers\CustomEntryHandler2.cs
 
 테스트 영상(test movie) : keyboard2.mp4
+
 https://github.com/pulmuone/MauiAndroidKeyboard/assets/42885949/64e70161-715f-4c92-b938-0929041d3eed
 
 
@@ -26,8 +27,7 @@ Purpose of use: To prevent the SoftKeyboard from appearing in Entry in the Andro
 iOS Handler has also been added as a development source.
 \iOS\Handlers\CustomEntryHandler2.cs
 
-
-P.S
+-
 Maui Effect를 사용한 SoftKeyboard Show/Hide.
 (SoftKeyboard Show/Hide with Maui Effect)
 https://github.com/pulmuone/MauiSoftKeyboard
