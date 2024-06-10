@@ -59,9 +59,9 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 
             //https://blog.stackademic.com/mastering-net-maui-a-deep-dive-into-handlers-1205cd34f270
             PlatformView.Layer.BorderColor = UIKit.UIColor.Gray.CGColor; // UIColor.Clear.CGColor;
-            PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+            PlatformView.BorderStyle = UIKit.UITextBorderStyle.RoundedRect;
             PlatformView.ClipsToBounds = true;
-            PlatformView.Layer.BorderWidth = 0;
+            PlatformView.Layer.BorderWidth = 1;
             //PlatformView.BackgroundColor = UIKit.UIColor.White;
 
             //platformView.InputView.Hidden = false;
@@ -78,8 +78,6 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 
         protected override void DisconnectHandler(MauiTextField platformView)
         {
-
-            //platformView.InputView.Hidden = true;
             platformView.Dispose();
             base.DisconnectHandler(platformView);
         }
