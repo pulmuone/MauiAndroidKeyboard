@@ -27,7 +27,7 @@ Purpose of use: To prevent the SoftKeyboard from appearing in Entry in the Andro
 iOS Handler has also been added as a development source.
 \iOS\Handlers\CustomEntryHandler2.cs
 
--
+--------
 Maui Effect를 사용한 SoftKeyboard Show/Hide.
 (SoftKeyboard Show/Hide with Maui Effect)
 https://github.com/pulmuone/MauiSoftKeyboard
