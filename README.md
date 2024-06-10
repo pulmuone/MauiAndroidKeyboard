@@ -13,6 +13,11 @@ iOS의 Handler도 개발 소스 추가.
 
 테스트 영상(test movie) : keyboard2.mp4
 
+
+https://github.com/pulmuone/MauiAndroidKeyboard/assets/42885949/64e70161-715f-4c92-b938-0929041d3eed
+
+
+
 SoftKeyboard Hide/Show using Maui.Android/iOS Entry Handler.
 When using IsSoftInputShowing/HideSoftInputAsync/ShowSoftInputAsync provided by default in Maui
 There is an issue where the keyboard appears and then disappears. Our goal is to make the SoftKeyboard invisible in Entry from the beginning.
