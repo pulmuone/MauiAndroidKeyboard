@@ -1,6 +1,18 @@
 # MauiAndroidKeyboard
 
-https://youtube.com/shorts/TNg9hpJpf1k?feature=share
+Maui.Android/iOS Entry Handler 를 사용한 SoftKeyboard Hide/Show.
+Maui에서 기본으로 제공하는 IsSoftInputShowing/HideSoftInputAsync/ShowSoftInputAsync 를 사용할 경우
+키보드가 보였다가 사라지는 문제가 있음. 우리가 원하는 목적은 처음부터 Entry에 SoftKeyboard가 보이지 않게 해야함.
+사용 목적 : Android PDA의 바코드 스캐너에서 Entry에 SoftKeyboard가 보이지 않게 하기 위함.
+           (블루투스 바코드 스캐너를 사용하는 Android/iOS에도 필요함)
 
-Maui's KeyboardExtensions fixes this issue.
-https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/extensions/keyboard-extensions
+
+테스트 영상(test movie) : keyboard2.mp4
+
+SoftKeyboard Hide/Show using Maui.Android/iOS Entry Handler.
+When using IsSoftInputShowing/HideSoftInputAsync/ShowSoftInputAsync provided by default in Maui
+There is an issue where the keyboard appears and then disappears. Our goal is to make the SoftKeyboard invisible in Entry from the beginning.
+Purpose of use: To prevent the SoftKeyboard from appearing in Entry in the Android PDA's barcode scanner.
+ (Also required for Android/iOS using a Bluetooth barcode scanner)
+
+
