@@ -8,6 +8,9 @@ Maui에서 기본으로 제공하는 IsSoftInputShowing/HideSoftInputAsync/ShowS
 
 \Views\HandlerEntryView2.xaml 이 화면의 소스를 참고.
 
+iOS의 Handler도 개발 소스 추가.
+\iOS\Handlers\CustomEntryHandler2.cs
+
 테스트 영상(test movie) : keyboard2.mp4
 
 SoftKeyboard Hide/Show using Maui.Android/iOS Entry Handler.
@@ -17,3 +20,6 @@ Purpose of use: To prevent the SoftKeyboard from appearing in Entry in the Andro
  (Also required for Android/iOS using a Bluetooth barcode scanner)
 
 \Views\HandlerEntryView2.xaml Refer to the source of this screen.
+
+iOS Handler has also been added as a development source.
+\iOS\Handlers\CustomEntryHandler2.cs
