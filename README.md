@@ -6,6 +6,7 @@ Maui에서 기본으로 제공하는 IsSoftInputShowing/HideSoftInputAsync/ShowS
 사용 목적 : Android PDA의 바코드 스캐너에서 Entry에 SoftKeyboard가 보이지 않게 하기 위함.
            (블루투스 바코드 스캐너를 사용하는 Android/iOS에도 필요함)
 
+\Views\HandlerEntryView2.xaml 이 화면의 소스를 참고.
 
 테스트 영상(test movie) : keyboard2.mp4
 
@@ -15,4 +16,4 @@ There is an issue where the keyboard appears and then disappears. Our goal is to
 Purpose of use: To prevent the SoftKeyboard from appearing in Entry in the Android PDA's barcode scanner.
  (Also required for Android/iOS using a Bluetooth barcode scanner)
 
-
+\Views\HandlerEntryView2.xaml Refer to the source of this screen.
