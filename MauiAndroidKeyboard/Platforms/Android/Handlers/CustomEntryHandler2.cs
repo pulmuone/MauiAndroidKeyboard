@@ -30,7 +30,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
             [nameof(HandlerEntry2.PlaceholderColor)] = MapPlaceholderColor,
             [nameof(HandlerEntry2.ReturnType)] = MapReturnType,
             [nameof(HandlerEntry2.SelectionLength)] = MapSelectionLength,
-            [nameof(HandlerEntry2.Text)] = MapText,
+            //[nameof(HandlerEntry2.Text)] = MapText, // 이 부분 주석처리 하지 않으면 한글 정상적으로 나오지 않음.
             [nameof(HandlerEntry2.TextColor)] = MapTextColor,
             [nameof(HandlerEntry2.VerticalTextAlignment)] = MapVerticalTextAlignment
         };

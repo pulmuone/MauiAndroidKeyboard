@@ -5,11 +5,20 @@
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty
             = BindableProperty.Create(nameof(ShowVirtualKeyboardOnFocus), typeof(bool), typeof(HandlerEntry2), true);
 
+
+        //public static new readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(HandlerEntry4), null);
+
         public bool ShowVirtualKeyboardOnFocus
         {
             get => (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty);
             set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
+
+        //public new string Text
+        //{
+        //    get { return (string)GetValue(TextProperty); }
+        //    set { SetValue(TextProperty, value); }
+        //}
 
         #region Events
         public event EventHandler ShowKeyboardRequested;

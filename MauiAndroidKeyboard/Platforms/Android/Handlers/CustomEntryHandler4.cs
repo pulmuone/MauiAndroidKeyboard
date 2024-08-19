@@ -87,16 +87,37 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
 
         private void PlatformView_EditorAction(object sender, TextView.EditorActionEventArgs e)
         {
-            var actionId = e.ActionId;
-            var evt = e.Event;
+            var returnType = VirtualView?.ReturnType;
 
-            if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
-                return; //Already handled by base class.
+            if (returnType != null)
+            {
+                var actionId = e.ActionId;
+                var evt = e.Event;
 
-            if (actionId != ImeAction.ImeNull)
-                (VirtualView as Entry).SendCompleted();
+                if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+                {
+                    (VirtualView as Entry).SendCompleted();
+                    //return; //Already handled by base class.
+                }
 
-            e.Handled = true;
+                if (actionId != ImeAction.ImeNull)
+                {
+                    (VirtualView as Entry).SendCompleted();
+                }
+            }
+
+            e.Handled = true; //이벤트 취소
+
+            //var actionId = e.ActionId;
+            //var evt = e.Event;
+
+            //if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
+            //    return; //Already handled by base class.
+
+            //if (actionId != ImeAction.ImeNull)
+            //    (VirtualView as Entry).SendCompleted();
+
+            //e.Handled = true;
 
             //if (actionId == ImeAction.Done || (actionId == ImeAction.ImeNull && evt?.KeyCode == Keycode.Enter && evt?.Action == KeyEventActions.Up))
             //{
