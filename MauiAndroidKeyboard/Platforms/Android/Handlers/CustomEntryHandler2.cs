@@ -57,7 +57,7 @@ namespace MauiAndroidKeyboard.Platforms.Android.Handlers
         }
 
         //#2
-        protected override AppCompatEditText CreatePlatformView() => new AppCompatEditText(Context);
+        //protected override AppCompatEditText CreatePlatformView() => new AppCompatEditText(Context);
 
         //#3
         //public override void SetVirtualView(IView view)

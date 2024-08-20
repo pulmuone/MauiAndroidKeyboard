@@ -7,27 +7,27 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
 {
     public class CustomEntryHandler2 : EntryHandler
     {
-        public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new(ViewMapper)
-        {
-            [nameof(HandlerEntry2.Background)] = MapBackground,
-            [nameof(HandlerEntry2.CharacterSpacing)] = MapCharacterSpacing,
-            [nameof(HandlerEntry2.ClearButtonVisibility)] = MapClearButtonVisibility,
-            [nameof(HandlerEntry2.CursorPosition)] = MapCursorPosition,
-            [nameof(HandlerEntry2.FontFamily)] = MapFont,
-            [nameof(HandlerEntry2.HorizontalTextAlignment)] = MapHorizontalTextAlignment,
-            [nameof(HandlerEntry2.IsPassword)] = MapIsPassword,
-            [nameof(HandlerEntry2.IsReadOnly)] = MapIsReadOnly,
-            [nameof(HandlerEntry2.IsTextPredictionEnabled)] = MapIsTextPredictionEnabled,
-            [nameof(HandlerEntry2.Keyboard)] = MapKeyboard,
-            [nameof(HandlerEntry2.MaxLength)] = MapMaxLength,
-            [nameof(HandlerEntry2.Placeholder)] = MapPlaceholder,
-            [nameof(HandlerEntry2.PlaceholderColor)] = MapPlaceholderColor,
-            [nameof(HandlerEntry2.ReturnType)] = MapReturnType,
-            [nameof(HandlerEntry2.SelectionLength)] = MapSelectionLength,
-            [nameof(HandlerEntry2.Text)] = MapText,
-            [nameof(HandlerEntry2.TextColor)] = MapTextColor,
-            [nameof(HandlerEntry2.VerticalTextAlignment)] = MapVerticalTextAlignment
-        };
+        //public static PropertyMapper<HandlerEntry2, CustomEntryHandler2> PropertyMapper = new(ViewMapper)
+        //{
+        //    [nameof(HandlerEntry2.Background)] = MapBackground,
+        //    [nameof(HandlerEntry2.CharacterSpacing)] = MapCharacterSpacing,
+        //    [nameof(HandlerEntry2.ClearButtonVisibility)] = MapClearButtonVisibility,
+        //    [nameof(HandlerEntry2.CursorPosition)] = MapCursorPosition,
+        //    [nameof(HandlerEntry2.FontFamily)] = MapFont,
+        //    [nameof(HandlerEntry2.HorizontalTextAlignment)] = MapHorizontalTextAlignment,
+        //    [nameof(HandlerEntry2.IsPassword)] = MapIsPassword,
+        //    [nameof(HandlerEntry2.IsReadOnly)] = MapIsReadOnly,
+        //    [nameof(HandlerEntry2.IsTextPredictionEnabled)] = MapIsTextPredictionEnabled,
+        //    [nameof(HandlerEntry2.Keyboard)] = MapKeyboard,
+        //    [nameof(HandlerEntry2.MaxLength)] = MapMaxLength,
+        //    [nameof(HandlerEntry2.Placeholder)] = MapPlaceholder,
+        //    [nameof(HandlerEntry2.PlaceholderColor)] = MapPlaceholderColor,
+        //    [nameof(HandlerEntry2.ReturnType)] = MapReturnType,
+        //    [nameof(HandlerEntry2.SelectionLength)] = MapSelectionLength,
+        //    [nameof(HandlerEntry2.Text)] = MapText,
+        //    [nameof(HandlerEntry2.TextColor)] = MapTextColor,
+        //    [nameof(HandlerEntry2.VerticalTextAlignment)] = MapVerticalTextAlignment
+        //};
 
 
         public static new CommandMapper<HandlerEntry2, CustomEntryHandler2> CommandMapper = new(ViewCommandMapper)
@@ -37,16 +37,17 @@ namespace MauiAndroidKeyboard.Platforms.iOS.Handlers
             [nameof(HandlerEntry2.ClearFocusRequested)] = MapClearFocusRequested
         };
 
-        public CustomEntryHandler2() : base(PropertyMapper, CommandMapper)
+
+        public CustomEntryHandler2() : base(null, CommandMapper)
         {
         }
 
-        protected override MauiTextField CreatePlatformView() => new MauiTextField();
+        //protected override MauiTextField CreatePlatformView() => new MauiTextField();
 
-        public override void SetVirtualView(IView view)
-        {
-            base.SetVirtualView(view);
-        }
+        //public override void SetVirtualView(IView view)
+        //{
+        //    base.SetVirtualView(view);
+        //}
 
 
         protected override void ConnectHandler(MauiTextField platformView)

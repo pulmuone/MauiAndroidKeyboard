@@ -87,8 +87,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
-	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.0.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
+	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	  <PackageReference Include="Plugin.Maui.Audio" Version="3.0.0" />
 	  <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
@@ -140,11 +140,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.40" />
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.80" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
 	</ItemGroup>
 
 </Project>
