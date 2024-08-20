@@ -41,6 +41,7 @@
 									IsSpellCheckEnabled="False"
 									IsTextPredictionEnabled="False" 
 									ShowVirtualKeyboardOnFocus="False"
+                                    ClearButtonVisibility="WhileEditing"                                    
 									Focused="UserIDEntry_Focused"
 									Unfocused="UserIDEntry_Unfocused"
 									ReturnCommand="{Binding UserIDCompletedCommand}"

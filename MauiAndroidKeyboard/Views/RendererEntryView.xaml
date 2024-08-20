@@ -54,7 +54,7 @@
 			<renderers:ExtendedEntry x:Name="PasswordEntry"
 									 Text="{Binding Password}"
 									 IsTextPredictionEnabled="False" 
-									 ShowVirtualKeyboardOnFocus="False"
+									 ShowVirtualKeyboardOnFocus="True"
 									 Keyboard="Numeric"
 									 Focused="PasswordEntry_Focused"
 									 Unfocused="PasswordEntry_Unfocused"

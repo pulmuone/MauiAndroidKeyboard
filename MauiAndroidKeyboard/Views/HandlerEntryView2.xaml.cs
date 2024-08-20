@@ -94,6 +94,8 @@ public partial class HandlerEntryView2 : ContentPage
     void BtnShow_Clicked(System.Object sender, System.EventArgs e)
     {
         this._currentEntry.ShowKeyboard();
+
+        UserIDEntry.Text = "Å×½ºÆ®";
     }
 
     void BtnHidden_Clicked(System.Object sender, System.EventArgs e)
@@ -120,4 +122,5 @@ public partial class HandlerEntryView2 : ContentPage
     {
         Debug.WriteLine("_page_Loaded");
     }
+
 }
